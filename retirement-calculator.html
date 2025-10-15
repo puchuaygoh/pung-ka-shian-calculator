@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคำนวณพุงเกษียณ by ผู้ช่วยโก๊ะ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;700&display=swap');
+        :root { --brand-green: #A8D8C9; --brand-blue: #D4EAF1; --brand-dark: #333; }
+        body { font-family: 'IBM Plex Sans Thai', sans-serif; background-color: var(--brand-blue); display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; margin: 0; padding: 20px; }
+        .calculator-container { background-color: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 500px; margin-top: 20px; }
+        h1 { color: var(--brand-dark); text-align: center; margin-bottom: 25px; font-size: 1.8em; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; color: #555; font-weight: 500; }
+        label .optional { font-weight: 400; color: #888; font-size: 0.9em; }
+        input[type="number"] { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1em; font-family: 'IBM Plex Sans Thai', sans-serif; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; border: none; background-color: var(--brand-green); color: var(--brand-dark); font-size: 1.2em; font-weight: 700; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; }
+        button:hover { background-color: #92c7b6; }
+        #result { margin-top: 30px; padding: 20px; border-radius: 10px; text-align: center; font-size: 1.1em; display: none; }
+        .size-s { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+        .size-m { background-color: #fffde7; color: #f9a825; border: 1px solid #fff59d; }
+        .size-l { background-color: #fff3e0; color: #ef6c00; border: 1px solid #ffcc80; }
+        .size-xl { background-color: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
+        .size-xxl { background-color: #fce4ec; color: #880e4f; border: 1px solid #f8bbd0; font-weight: bold; }
+        a.back-link { display: block; text-align: center; margin-top: 20px; color: #555; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>เครื่องคำนวณ "พุงเกษียณ" 🤸</h1>
+        <div class="input-group">
+            <label for="currentAge">ปัจจุบันคุณอายุเท่าไหร่แล้วครับ? 😊</label>
+            <input type="number" id="currentAge" placeholder="เช่น 35">
+        </div>
+        <div class="input-group">
+            <label for="retirementAge">คุณวางแผนจะหยุดทำงาน (เกษียณ) ตอนอายุเท่าไหร่ครับ?</label>
+            <input type="number" id="retirementAge" placeholder="เช่น 60">
+        </div>
+        <div class="input-group">
+            <label for="expectedLifespan">คุณอยากใช้ชีวิตหลังเกษียณไปเรื่อยๆ จนถึงอายุประมาณเท่าไหร่ครับ?</label>
+            <input type="number" id="expectedLifespan" placeholder="เช่น 85">
+        </div>
+        <hr>
+        <div class="input-group">
+            <label for="monthlyExpenses">ค่าใช้จ่ายที่จำเป็นต่อเดือนของคุณ อยู่ที่ประมาณเท่าไหร่ครับ?</label>
+            <input type="number" id="monthlyExpenses" placeholder="เช่น 25000">
+        </div>
+        <div class="input-group">
+            <label for="retirementMonthlyExpenses">หลังจากที่หยุดทำงานแล้ว คุณคาดว่าจะมีค่าใช้จ่ายต่อเดือน อยู่ที่ประมาณเท่าไหร่ครับ? <span class="optional">(ถ้าไม่แน่ใจ เว้นว่างได้)</span></label>
+            <input type="number" id="retirementMonthlyExpenses" placeholder="เช่น 20000">
+        </div>
+        <hr>
+        <div class="input-group">
+            <label for="currentAssets">เงินเก็บ, ทรัพย์สิน, หรือเงินลงทุนที่มีอยู่ทั้งหมดตอนนี้ รวมๆ กันประมาณเท่าไหร่ครับ?</label>
+            <input type="number" id="currentAssets" placeholder="เช่น 500000">
+        </div>
+        <div class="input-group">
+            <label for="monthlySavings">คุณตั้งใจจะออม/ลงทุนเพิ่มต่อเดือนเท่าไหร่ดีครับ?</label>
+            <input type="number" id="monthlySavings" placeholder="เช่น 5000">
+        </div>
+        <div class="input-group">
+            <label for="expectedReturn">คุณคาดหวังผลตอบแทนจากการลงทุนเฉลี่ยต่อปีประมาณกี่เปอร์เซ็นต์ครับ? <span class="optional">(ถ้าไม่แน่ใจ ใส่ 5)</span></label>
+            <input type="number" id="expectedReturn" placeholder="เช่น 5 สำหรับ 5%">
+        </div>
+        
+        <button onclick="calculateBellySize()">วัดไซส์พุงของคุณ!</button>
+        <div id="result"></div>
+        <a href="index.html" class="back-link">กลับสู่หน้าหลัก</a>
+    </div>
+
+    <script>
+        function calculateBellySize() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const expectedLifespan = parseInt(document.getElementById('expectedLifespan').value);
+            const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
+            let retirementMonthlyExpenses = parseFloat(document.getElementById('retirementMonthlyExpenses').value);
+            const currentAssets = parseFloat(document.getElementById('currentAssets').value);
+            const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
+            let expectedReturn = parseFloat(document.getElementById('expectedReturn').value);
+
+            if (isNaN(currentAge) || isNaN(retirementAge) || isNaN(expectedLifespan) || isNaN(monthlyExpenses) || isNaN(currentAssets) || isNaN(monthlySavings)) {
+                alert("กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วนและเป็นตัวเลขเท่านั้นครับ!");
+                return;
+            }
+
+            if (isNaN(retirementMonthlyExpenses) || retirementMonthlyExpenses <= 0) {
+                retirementMonthlyExpenses = monthlyExpenses * 0.7;
+            }
+            if (isNaN(expectedReturn) || expectedReturn <= 0) {
+                expectedReturn = 5;
+            }
+
+            const yearsToRetire = retirementAge - currentAge;
+            const yearsInRetirement = expectedLifespan - retirementAge;
+            const annualReturn = expectedReturn / 100;
+
+            if (yearsToRetire <= 0 || yearsInRetirement <= 0) {
+                alert("ข้อมูลอายุไม่ถูกต้อง กรุณาตรวจสอบอีกครั้งครับ");
+                return;
+            }
+
+            const retirementNeeds = retirementMonthlyExpenses * 12 * yearsInRetirement;
+
+            const fvCurrentAssets = currentAssets * Math.pow((1 + annualReturn), yearsToRetire);
+            const fvMonthlySavings = (monthlySavings * 12) * ((Math.pow((1 + annualReturn), yearsToRetire) - 1) / annualReturn);
+            const retirementHaves = fvCurrentAssets + fvMonthlySavings;
+
+            const retirementBelly = retirementNeeds - retirementHaves;
+
+            let bellySize = '', message = '', sizeClass = '';
+            if (retirementBelly <= 0) {
+                bellySize = 'S (ฟิตมาก!)';
+                message = 'ยอดเยี่ยม! คุณมีเงินเกินเป้าหมายไปแล้ว แผนของคุณแข็งแรงมากครับ!';
+                sizeClass = 'size-s';
+            } else if (retirementBelly <= 2000000) {
+                bellySize = 'M (สุขภาพดี)';
+                message = 'ดีมากครับ! คุณมาถูกทางแล้ว เหลืออีกนิดเดียวก็จะถึงเป้าหมาย';
+                sizeClass = 'size-m';
+            } else if (retirementBelly <= 5000000) {
+                bellySize = 'L (เริ่มมีพุง)';
+                message = 'เริ่มเห็นช่องว่างแล้วนะครับ แต่ไม่ต้องกังวล ยังมีเวลาให้เราวางแผนเพิ่มเติมได้!';
+                sizeClass = 'size-l';
+            } else if (retirementBelly <= 10000000) {
+                bellySize = 'XL (พุงใหญ่)';
+                message = 'ช่องว่างค่อนข้างใหญ่ ถึงเวลาต้องจริงจังกับการ "ฟิตเนสการเงิน" แล้วครับ!';
+                sizeClass = 'size-xl';
+            } else {
+                bellySize = 'XXL (ต้องลดด่วน!)';
+                message = 'ช่องว่างใหญ่มาก! แต่อย่าเพิ่งท้อนะครับ นี่คือจุดเริ่มต้นที่ดีที่สุดในการเปลี่ยนแปลง! ผู้ช่วยโก๊ะพร้อมช่วยคุณครับ!';
+                sizeClass = 'size-xxl';
+            }
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <p>ช่องว่างเงินเกษียณของคุณคือ:</p>
+                <h3>${retirementBelly.toLocaleString('th-TH', { maximumFractionDigits: 0 })} บาท</h3>
+                <hr>
+                <h2>พุงเกษียณของคุณคือไซส์: ${bellySize}</h2>
+                <p>${message}</p>
+            `;
+            resultDiv.className = sizeClass;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

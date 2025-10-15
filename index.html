@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผู้ช่วยโก๊ะ - เพื่อนซี้เรื่องเกษียณ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;700&display=swap');
+        :root { --brand-green: #A8D8C9; --brand-blue: #D4EAF1; --brand-dark: #333; --brand-light-gray: #f4f4f4; --brand-accent: #FFC300; }
+        body { font-family: 'IBM Plex Sans Thai', sans-serif; background-color: var(--brand-light-gray); margin: 0; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; }
+        .header { margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; color: var(--brand-dark); margin-bottom: 10px; }
+        .header h1 span { font-size: 1.5em; vertical-align: middle; }
+        .header p { font-size: 1.2em; color: #555; margin: 0; }
+        .mission-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; width: 100%; max-width: 900px; }
+        .mission-box { background-color: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 30px; width: 100%; max-width: 350px; text-decoration: none; color: inherit; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .mission-box:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .mission-box h2 { font-size: 2em; margin-top: 0; margin-bottom: 15px; color: var(--brand-green); }
+        .mission-box h2 span { font-size: 1.5em; vertical-align: middle; }
+        .mission-box ul { list-style: none; padding: 0; margin: 0 0 20px 0; text-align: left; color: #555; flex-grow: 1; }
+        .mission-box li { margin-bottom: 10px; position: relative; padding-left: 25px; }
+        .mission-box li::before { content: '✅'; position: absolute; left: 0; color: var(--brand-green); }
+        .mission-btn { background-color: var(--brand-green); color: var(--brand-dark); padding: 15px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.1em; display: inline-block; }
+        .banner { background-color: var(--brand-blue); color: #444; padding: 20px; border-radius: 15px; margin-top: 40px; width: 100%; max-width: 800px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤸‍♂️ ผู้ช่วยโก๊ะ</h1>
+        <p>เพื่อนซี้เรื่องเกษียณ</p> </div>
+
+    <div class="mission-container">
+        <a href="retirement-calculator.html" class="mission-box">
+            <h2><span>🏝️</span> ปิดพุงเกษียณ</h2>
+            <ul>
+                <li>สงสัยไหมว่าต้องมีเงินเท่าไหร่ถึงจะเกษียณได้อย่างสบายใจ?</li>
+                <li>อยากรู้ว่า "ช่องว่าง" เงินเกษียณของคุณตอนนี้เป็นไซส์ไหน?</li>
+                <li>ใช้เครื่องคำนวณส่วนตัวของเรา เพื่อวางแผนชีวิตหลังเกษียณที่คุณฝันไว้!</li>
+            </ul>
+            <div class="mission-btn">เริ่มปิดพุงเกษียณ!</div>
+        </a>
+
+        <a href="tax-fitness.html" class="mission-box">
+            <h2><span>💸</span> ลดพุงภาษี</h2>
+            <ul>
+                <li>สิ้นปีแล้ว... ไม่อยากพลาดโอกาสลดหย่อนภาษีดีๆ ใช่ไหม?</li>
+                <li>มาดูกันว่าคุณจะ "ประหยัดภาษี" ได้อีกเท่าไหร่ และมีเครื่องมืออะไรช่วยได้บ้าง</li>
+                <li>รับคู่มือฟรี พร้อมปรึกษาเคล็ดลับลดหย่อนภาษีที่เหมาะกับคุณ!</li>
+            </ul>
+            <div class="mission-btn">เริ่มลดพุงภาษี!</div>
+        </a>
+    </div>
+
+    <div class="banner">
+        <p>กังวลเรื่องเงิน แต่ไม่รู้จะเริ่มแก้ที่ตรงไหน? 🃏 ลอง **"เปิดไพ่บำบัดเงิน"** เพื่อค้นหา "ราก" ของปัญหาการเงินที่ซ่อนอยู่ในใจของคุณ (เร็วๆ นี้ในคอนเทนต์ Facebook ของเรา!)</p>
+    </div>
+</body>
+</html>
