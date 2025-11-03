@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ภารกิจ: วัดไซส์พุงเกษียณ - ผู้ช่วยโก๊ะ</title>
+    <title>ภารกิจ: วินิจฉัยพุงเกษียณ - ผู้ช่วยโก๊ะ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
@@ -12,8 +12,8 @@
         
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f5f6fa; /* สีพื้นหลังอ่อนลง */
-            color: #34495e; /* สีข้อความหลักเข้มขึ้นเล็กน้อย */
+            background-color: #f5f6fa;
+            color: #34495e;
             display: grid;
             place-items: center;
             min-height: 100vh;
@@ -28,104 +28,180 @@
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            border: 1px solid #e0e0e0; /* ขอบบางลง */
+            border: 1px solid #e0e0e0;
         }
 
         /* --- ส่วน Header --- */
         .header {
-            background-color: #00B894; /* เปลี่ยนเป็นสีเขียว Teal สดใส */
+            background-color: #00B894; /* สีเขียว Teal */
             color: white;
             padding: 24px;
             text-align: center;
         }
         .header h1 {
             margin: 0;
-            font-size: 2rem; /* 32px */
-        }
-        .header p {
-            margin: 8px 0 0;
-            font-size: 1.1rem; /* 18px */
-            opacity: 0.9;
+            font-size: 2rem;
         }
         .header .mascot-header {
-            width: 100px; /* ขนาดรูป Mascot */
+            width: 100px;
             height: auto;
             margin-top: 15px;
-            border-radius: 50%; /* ทำให้รูป Mascot เป็นวงกลม ถ้าชอบ */
+            border-radius: 50%;
         }
 
-        /* --- ส่วน Form (Input) --- */
-        .calculator-form {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* --- Wizard Form Container --- */
+        .calculator-wizard {
+            padding: 32px;
         }
+
+        /* --- Progress Bar --- */
+        .progress-bar {
+            display: flex;
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .progress-step {
+            width: 20%; /* 100% / 5 steps */
+            height: 100%;
+            background-color: #00B894;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .progress-step.active {
+            opacity: 1;
+        }
+
+        /* --- Wizard Steps --- */
+        .wizard-step {
+            display: none; /* ซ่อนทุก Step ไว้ก่อน */
+            animation: fadeIn 0.5s;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Form Elements --- */
         .form-group {
             display: flex;
             flex-direction: column;
+            margin-bottom: 20px;
         }
         .form-group label {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 700;
-            color: #34495e; /* สีเดียวกับข้อความหลัก */
+            color: #34495e;
+            font-size: 1.25rem; /* ตัวใหญ่ขึ้น */
+            text-align: center;
         }
         .form-group input {
-            padding: 12px 16px;
-            border: 1px solid #ddd;
+            padding: 14px 18px;
+            border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-family: 'Kanit', sans-serif;
-            color: #34495e; /* สีข้อความใน input */
+            color: #34495e;
+            text-align: center;
         }
         .form-group input:focus {
             outline: none;
-            border-color: #00B894; /* Border ตอน Focus เป็นสีเขียว Teal */
-            box-shadow: 0 0 0 3px rgba(0,184,148,0.2); /* Shadow ตอน Focus */
+            border-color: #00B894;
+            box-shadow: 0 0 0 3px rgba(0,184,148,0.2);
         }
 
-        /* --- ปุ่ม CTA --- */
-        .submit-btn {
-            background-color: #4CAF50; /* เปลี่ยนเป็นสีเขียวสดใส */
-            color: white;
+        /* --- Navigation Buttons --- */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+        }
+        .nav-buttons button {
             font-family: 'Kanit', sans-serif;
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: 700;
-            padding: 14px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.2s ease;
-            margin-top: 10px;
+        }
+        .prev-btn {
+            background-color: #eee;
+            color: #555;
+        }
+        .prev-btn:hover {
+            background-color: #ddd;
+        }
+        .next-btn {
+            background-color: #4CAF50; /* สีเขียวสดใส */
+            color: white;
+        }
+        .next-btn:hover {
+            background-color: #43a047;
+        }
+        .submit-btn {
+            background-color: #d9534f; /* สีแดงสำหรับปุ่มสุดท้าย! */
+            color: white;
         }
         .submit-btn:hover {
-            background-color: #43a047; /* สีเขียวเข้มขึ้นเมื่อ hover */
+            background-color: #c9302c;
         }
-        
+
+        /* --- Loading Step --- */
+        .loading-step {
+            text-align: center;
+            padding: 40px 0;
+        }
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #00B894;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-step p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
         /* --- ส่วนแสดงผลลัพธ์ (Output) --- */
         .results-area {
             display: none; /* ซ่อนไว้ก่อน */
             padding: 24px;
             text-align: center;
             border-top: 1px solid #e0e0e0;
+            animation: fadeIn 0.5s;
         }
         .results-area .mascot-result {
-            width: 120px; /* ขนาดใหญ่กว่าใน Header */
+            width: 120px;
             height: auto;
             margin-bottom: 15px;
         }
         .results-area .size-display {
-            font-size: 3.5rem; /* 56px */
+            font-size: 3.5rem;
             font-weight: 700;
             margin: 0;
         }
         .results-area .mascot-message {
-            font-size: 1.25rem; /* 20px */
+            font-size: 1.25rem;
             margin: 10px 0;
             color: #34495e;
         }
         .results-area .gap-message {
-            font-size: 1.1rem; /* 18px */
+            font-size: 1.1rem;
             color: #555;
             background-color: #f9f9f9;
             padding: 10px;
@@ -133,18 +209,15 @@
         }
         .results-area .gap-message span {
             font-weight: 700;
-            color: #d9534f; /* สีแดงสำหรับตัวเลข Gap (คงเดิม) */
             font-size: 1.25rem;
         }
-        /* สีของไซส์พุง (คงเดิมเพื่อให้สื่อความหมายชัดเจน) */
-        .results-area .size-S { color: #4CAF50; } /* สีเขียวสด (Fit) */
-        .results-area .size-M { color: #f0ad4e; } /* สีส้ม (M) */
-        .results-area .size-L { color: #d9534f; } /* สีแดง (L) */
-        .results-area .size-XL { color: #c9302c; } /* สีแดงเข้ม (XL) */
+        .results-area .size-S { color: #4CAF50; } /* Fit */
+        .results-area .size-M { color: #f0ad4e; } /* M */
+        .results-area .size-L { color: #d9534f; } /* L */
+        .results-area .size-XL { color: #c9302c; } /* XL */
 
         /* --- ส่วนก้าวต่อไป (Next Steps) --- */
         .next-steps {
-            display: none; /* ซ่อนไว้ก่อน */
             background-color: #fdfdfd;
             border-top: 1px solid #e0e0e0;
             padding: 24px;
@@ -153,79 +226,34 @@
             text-align: center;
             margin-top: 0;
             font-size: 1.5rem;
-            color: #00B894; /* เปลี่ยนเป็นสีเขียว Teal */
+            color: #00B894;
         }
-        .next-steps-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .next-steps-list li {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 16px;
-            transition: box-shadow 0.2s ease;
-        }
-        .next-steps-list li:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        .next-steps-list a {
-            text-decoration: none;
-            color: #00B894; /* เปลี่ยนเป็นสีเขียว Teal */
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .next-steps-list span {
-            display: block;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-
-        /* --- ส่วน Lead Magnet (Form) --- */
         .lead-magnet {
-            background-color: #fff0f3; /* เปลี่ยนเป็นสีชมพูอ่อน */
-            border: 1px dashed #FFC0CB; /* Border เป็นสีชมพูพาสเทล */
+            background-color: #fff0f3; /* สีชมพูอ่อน */
+            border: 1px dashed #FFC0CB;
             border-radius: 8px;
             padding: 16px;
             text-align: center;
         }
         .lead-magnet p {
             font-weight: 700;
-            margin: 0 0 10px;
+            margin: 0 0 15px;
             color: #34495e;
-        }
-        .lead-magnet input[type="email"] {
-            width: calc(100% - 32px);
-            padding: 10px 16px;
-            border: 1px solid #FFC0CB; /* Border เป็นสีชมพูพาสเทล */
-            border-radius: 8px;
-            font-family: 'Kanit', sans-serif;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
         .lead-magnet button {
-            background-color: #FFC0CB; /* เปลี่ยนเป็นสีชมพูพาสเทล */
-            color: #34495e; /* Text สีเข้มเพื่อให้ตัดกัน */
+            background-color: #FFC0CB; /* สีชมพูพาสเทล */
+            color: #34495e;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 8px;
             font-family: 'Kanit', sans-serif;
             font-weight: 700;
             cursor: pointer;
+            font-size: 1.1rem;
         }
         .lead-magnet button:hover {
-            background-color: #ffafc0; /* สีชมพูเข้มขึ้นเมื่อ hover */
-        }
-        
-        /* --- Footer --- */
-        .footer-note {
-            padding: 0 24px 24px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
+            background-color: #ffafc0;
         }
 
     </style>
@@ -236,29 +264,79 @@
         
         <header class="header">
             <img src="mascot.png" alt="Mascot ผู้ช่วยโก๊ะ" class="mascot-header">
-            <h1>🤸‍♂️ ภารกิจ: วัดไซส์พุงเกษียณ!</h1>
-            <p>กรอก 4 ข้อนี้ แล้ว 'ผู้ช่วยโก๊ะ' จะช่วยวัดให้ทันที!</p>
+            <h1>🤸‍♂️ ภารกิจ: วินิจฉัยพุงเกษียณ!</h1>
         </header>
 
-        <form class="calculator-form" id="calculator-form">
-            <div class="form-group">
-                <label for="currentAge">1. อายุของคุณตอนนี้ (ปี)</label>
-                <input type="number" id="currentAge" placeholder="เช่น 30" required>
+        <form class="calculator-wizard" id="wizard-form">
+
+            <div class="progress-bar">
+                <div class="progress-step active" id="p-step-1"></div>
+                <div class="progress-step" id="p-step-2"></div>
+                <div class="progress-step" id="p-step-3"></div>
+                <div class="progress-step" id="p-step-4"></div>
+                <div class="progress-step" id="p-step-5"></div>
             </div>
-            <div class="form-group">
-                <label for="retirementAge">2. อายุที่อยากเกษียณ (ปี)</label>
-                <input type="number" id="retirementAge" placeholder="เช่น 60" required>
-            </div>
-            <div class="form-group">
-                <label for="monthlyExpenses">3. ค่าใช้จ่ายต่อเดือนที่อยากใช้ (เทียบกับค่าเงิน *วันนี้*)</label>
-                <input type="number" id="monthlyExpenses" placeholder="เช่น 30000" required>
-            </div>
-            <div class="form-group">
-                <label for="currentSavings">4. เงินเก็บเพื่อเกษียณที่คุณมีตอนนี้ (บาท)</label>
-                <input type="number" id="currentSavings" placeholder="เช่น 500000" required>
+            
+            <div class="wizard-step active" id="step-1">
+                <div class="form-group">
+                    <label for="currentAge">สวัสดีครับ! 'โก๊ะ' ขอเริ่ม 'วินิจฉัย' นะครับ...<br>ปัจจุบันคุณอายุเท่าไหร่ครับ?</label>
+                    <input type="number" id="currentAge" placeholder="เช่น 30" required>
+                </div>
+                <div class="nav-buttons" style="justify-content: flex-end;">
+                    <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
+                </div>
             </div>
 
-            <button type="submit" class="submit-btn">เช็กไซส์พุงเลย!</button>
+            <div class="wizard-step" id="step-2">
+                <div class="form-group">
+                    <label for="retirementAge">ยอดเยี่ยมครับ! แล้วคุณ 'ฝัน' ว่าอยากเกษียณตอนอายุเท่าไหร่ครับ?</label>
+                    <input type="number" id="retirementAge" placeholder="เช่น 60" required>
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" class="prev-btn" onclick="nextPrev(-1)">&lt; กลับ</button>
+                    <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
+                </div>
+            </div>
+
+            <div class="wizard-step" id="step-3">
+                <div class="form-group">
+                    <label for="monthlyExpenses">คุณอยากใช้ชีวิตสบายๆ เดือนละเท่าไหร่ครับ? (คิดเป็นค่าเงินวันนี้)</label>
+                    <input type="number" id="monthlyExpenses" placeholder="เช่น 30000" required>
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" class="prev-btn" onclick="nextPrev(-1)">&lt; กลับ</button>
+                    <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
+                </div>
+            </div>
+
+            <div class="wizard-step" id="step-4">
+                <div class="form-group">
+                    <label for="currentSavings">ตอนนี้ คุณมี 'กล้ามเนื้อ' (เงินเก็บ/ลงทุน) ที่เตรียมไว้แล้วเท่าไหร่ครับ?</label>
+                    <input type="number" id="currentSavings" placeholder="เช่น 500000" required>
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" class="prev-btn" onclick="nextPrev(-1)">&lt; กลับ</button>
+                    <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
+                </div>
+            </div>
+
+            <div class="wizard-step" id="step-5">
+                <div class="form-group">
+                    <label for="monthlySavings">สุดท้ายครับ! คุณตั้งใจจะ 'สร้างกล้ามเนื้อ' (ออม/ลงทุน) เพิ่มอีกเดือนละเท่าไหร่ครับ?</label>
+                    <input type="number" id="monthlySavings" placeholder="เช่น 5000" required>
+                </div>
+                <div class="nav-buttons">
+                    <button type="button" class="prev-btn" onclick="nextPrev(-1)">&lt; กลับ</button>
+                    <button type="submit" class="submit-btn">วินิจฉัยเลย!</button>
+                </div>
+            </div>
+
+            <div class="wizard-step loading-step" id="step-6">
+                <div class="loader"></div>
+                <p>'ผู้ช่วยโก๊ะ' กำลังวินิจฉัย 'ไซส์พุง' ของคุณ...
+                <br><span style="font-size: 0.9rem;">(คิดเงินเฟ้อ 3% และผลตอบแทนลงทุน 5% นะครับ)</span></p>
+            </div>
+            
         </form>
         
         <section class="results-area" id="results-area">
@@ -266,153 +344,198 @@
             <h2 class="size-display" id="belly-size-display">ไซส์ L</h2>
             <p class="mascot-message" id="mascot-message">โอ้! พุงของคุณยังค่อนข้างใหญ่ (L) นะครับ!</p>
             <p class="gap-message" id="gap-message">
-                ตอนนี้เรามี 'ช่องว่าง' (Gap) ที่ต้องปิดกันอีกประมาณ
+                จากการวินิจฉัย... แผนปัจจุบันของคุณยังมี 'ช่องว่าง' (Gap) อีกประมาณ
                 <span id="gap-amount">7,500,000 บาท</span>
             </p>
         </section>
 
-        <section class="next-steps" id="next-steps">
+        <section class="next-steps" id="next-steps" style="display: none;">
             <h3>แผนลดพุงสำหรับคุณ 🚀</h3>
-            <ul class="next-steps-list">
-                <li>
-                    <a href="#">(ตัวอย่าง) 1. มือใหม่จัดพอร์ตลดพุงแบบไม่เจ็บตัว</a>
-                    <span>(บทความ) เริ่มต้นง่ายๆ สำหรับคนไซส์ L</span>
-                </li>
-                <li>
-                    <a href="#">(ตัวV) 2. รู้จัก RMF/SSF คู่หูลดพุงภาษี</a>
-                    <span>(บทความ) ตัวช่วยสำคัญที่จะเร่งสปีดการออมของคุณ</span>
-                </li>
-                <li class="lead-magnet">
-                    <p>รับฟรี! E-book "5 สูตรลับปิดพุงเกษียณ"</p>
-                    <input type="email" placeholder="กรอกอีเมลของคุณ">
-                    <button type="button">ส่งให้เลย!</button>
-                </li>
-            </ul>
+            <div class="lead-magnet">
+                <p>รับฟรี! E-book "5 สูตรลับสลายพุงเกษียณ"</p>
+                <button type="button" id="cta-button">แอด LINE 'ผู้ช่วยโก๊ะ' เพื่อรับเลย!</button>
+            </div>
         </section>
         
-        <footer class="footer-note">
-            <p>ข้อควรทราบ: การคำนวณนี้เป็นเพียงการประมาณการเบื้องต้นเท่านั้น
-                <br>โดยมีสมมติฐาน: อัตราเงินเฟ้อ 3%, ผลตอบแทนการลงทุน 5%</p>
-        </footer>
     </div>
 
 
     <script>
-        // --- 1. ตั้งค่าคงที่ (สำคัญมาก) ---
-        const INFLATION_RATE = 0.03;         // อัตราเงินเฟ้อ (3% ต่อปี)
-        const INVESTMENT_RETURN_RATE = 0.05; // อัตราผลตอบแทน (5% ต่อปี)
-        const WITHDRAWAL_RATE = 0.04;        // อัตราการถอนเงินใช้ (4% Rule)
+        // --- 1. ตั้งค่าคงที่ (ตามที่คุณตัดสินใจ!) ---
+        const INFLATION_RATE = 0.03;         // อัตราเงินเฟ้อ (3%)
+        const INVESTMENT_RETURN_RATE = 0.05; // อัตราผลตอบแทน (5%)
+        const WITHDRAWAL_RATE = 0.04;        // กฎ 4% Rule
 
-        // --- 2. เลือก Elements ที่ต้องใช้ ---
-        const form = document.getElementById('calculator-form');
+        // --- 2. ตัวแปร Wizard ---
+        let currentStep = 1;
+        const steps = document.querySelectorAll(".wizard-step");
+        const progressSteps = document.querySelectorAll(".progress-step");
+
+        // --- 3. เลือก Elements ---
+        const form = document.getElementById('wizard-form');
         const resultsArea = document.getElementById('results-area');
         const nextSteps = document.getElementById('next-steps');
         const sizeDisplay = document.getElementById('belly-size-display');
         const mascotMessage = document.getElementById('mascot-message');
-        const gapMessage = document.getElementById('gap-message');
         const gapAmount = document.getElementById('gap-amount');
-        const mascotResultImg = document.getElementById('mascot-result-img'); 
+        
+        // --- 4. ปุ่ม CTA ไป LINE OA ---
+        const ctaButton = document.getElementById('cta-button');
+        ctaButton.addEventListener('click', function() {
+            // !! ให้เปลี่ยน 'YOUR_LINE_OA_LINK' เป็นลิงก์ LINE OA ของคุณ !!
+            window.open('https://line.me/ti/p/@puchuaygoh', '_blank'); 
+        });
 
-        // --- 3. ตัวช่วย Format ตัวเลข ---
+        // --- 5. ตัวช่วย Format ตัวเลข ---
         const formatter = new Intl.NumberFormat('th-TH', {
             style: 'decimal',
             maximumFractionDigits: 0,
         });
 
-        // --- 4. Event Listener เมื่อกดปุ่ม "เช็กไซส์พุงเลย!" ---
+        // --- 6. ฟังก์ชันแสดง Step ---
+        function showStep(n) {
+            steps.forEach(step => step.classList.remove('active'));
+            document.getElementById(`step-${n}`).classList.add('active');
+
+            // อัปเดต Progress Bar
+            progressSteps.forEach((pStep, index) => {
+                if (index < n) {
+                    pStep.classList.add('active');
+                } else {
+                    pStep.classList.remove('active');
+                }
+            });
+            currentStep = n;
+        }
+
+        // --- 7. ฟังก์ชัน Next/Prev ---
+        function nextPrev(n) {
+            // Validate Input
+            const currentStepInputs = steps[currentStep - 1].querySelectorAll("input");
+            let isValid = true;
+            currentStepInputs.forEach(input => {
+                if (!input.value || parseFloat(input.value) < 0) {
+                    input.style.borderColor = "#d9534f"; // สีแดง
+                    isValid = false;
+                } else {
+                    input.style.borderColor = "#ddd";
+                }
+            });
+
+            if (n === 1 && !isValid) return false; // ถ้ากดยืนยันแล้วไม่ผ่าน ไม่ต้องไปต่อ
+
+            // ตรวจสอบอายุเกษียณ (Step 2)
+            if (currentStep === 2 && n === 1) {
+                const currentAge = parseFloat(document.getElementById('currentAge').value);
+                const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+                if (retirementAge <= currentAge) {
+                    alert('อายุเกษียณต้องมากกว่าอายุปัจจุบันนะครับ');
+                    document.getElementById('retirementAge').style.borderColor = "#d9534f";
+                    return false;
+                }
+            }
+
+            showStep(currentStep + n);
+        }
+
+        // --- 8. Event Listener เมื่อกด "วินิจฉัยเลย!" (Submit) ---
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // ป้องกันหน้าเว็บโหลดใหม่
+            
+            // Validate Step 5
+            const lastInput = document.getElementById('monthlySavings');
+            if (!lastInput.value || parseFloat(lastInput.value) < 0) {
+                 lastInput.style.borderColor = "#d9534f";
+                 alert('กรุณากรอกข้อมูลให้ครบนะครับ');
+                 return;
+            }
 
-            // --- 5. ดึงข้อมูลจาก Form ---
+            // --- 9. ดึงข้อมูล 5 ข้อ ---
             const currentAge = parseFloat(document.getElementById('currentAge').value);
             const retirementAge = parseFloat(document.getElementById('retirementAge').value);
             const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
             const currentSavings = parseFloat(document.getElementById('currentSavings').value);
+            const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
 
-            // --- 6. ตรวจสอบข้อมูลเบื้องต้น ---
-            if (isNaN(currentAge) || isNaN(retirementAge) || isNaN(monthlyExpenses) || isNaN(currentSavings)) {
-                alert('กรุณากรอกข้อมูลให้ครบทุกช่องด้วยตัวเลขนะครับ');
-                return;
-            }
-            if (retirementAge <= currentAge) {
-                alert('อายุเกษียณต้องมากกว่าอายุปัจจุบันนะครับ');
-                return;
-            }
+            // --- 10. แสดง Loading ---
+            showStep(6); // แสดง Step 6 (Loading)
 
-            // --- 7. หัวใจการคำนวณ (ตามกลยุทธ์ 4% Rule) ---
+            // --- 11. หัวใจการคำนวณ (ฉบับอัปเกรด 5%) ---
             
-            // 7.1: เราต้องมีเงินก้อนสุดท้ายเท่าไหร่ (ใน *ค่าเงินวันนี้*)
-            // (ค่าใช้จ่ายต่อเดือน * 12 เดือน) / 4%
-            const targetNestEggToday = (monthlyExpenses * 12) / WITHDRAWAL_RATE;
-            
-            // 7.2: จำนวนปีที่เหลือในการเก็บเงิน
             const yearsToRetirement = retirementAge - currentAge;
-
-            // 7.3: เงินก้อนเป้าหมายในอนาคต (คิดเงินเฟ้อทบต้น)
-            // FV = PV * (1 + i)^n
-            const targetNestEggFuture = targetNestEggToday * Math.pow((1 + INFLATION_RATE), yearsToRetirement);
+            const r = INVESTMENT_RETURN_RATE / 12; // อัตราผลตอบแทน 5% ต่อเดือน
+            const n = yearsToRetirement * 12; // จำนวนงวด (เดือน)
             
-            // 7.4: เงินเก็บที่มีในปัจจุบัน จะโตเป็นเท่าไหร่ในอนาคต (คิดผลตอบแทนทบต้น)
-            // FV = PV * (1 + r)^n
-            const savingsFutureValue = currentSavings * Math.pow((1 + INVESTMENT_RETURN_RATE), yearsToRetirement);
+            // 11.1: เป้าหมาย (Target Goal)
+            // (FV ของค่าใช้จ่าย โดยคิดเงินเฟ้อ 3% -> แล้วคำนวณ 4% Rule)
+            const futureMonthlyExpenses = monthlyExpenses * Math.pow((1 + INFLATION_RATE), yearsToRetirement);
+            const targetNestEggFuture = (futureMonthlyExpenses * 12) / WITHDRAWAL_RATE;
 
-            // 7.5: "ช่องว่าง" (The Gap) ที่เราต้องหาเพิ่ม
-            const gap = targetNestEggFuture - savingsFutureValue;
+            // 11.2: เงินเก็บปัจจุบัน (Projected Lump Sum)
+            // (FV ของเงินก้อนปัจจุบัน โดยคิดผลตอบแทน 5%)
+            const savingsFutureValue_LumpSum = currentSavings * Math.pow((1 + INVESTMENT_RETURN_RATE), yearsToRetirement);
 
-            // --- 8. ประเมิน "ไซส์พุง" และข้อความ ---
+            // 11.3: เงินออมต่อเดือน (Projected Annuity)
+            // (FV ของเงินออมต่อเดือน โดยคิดผลตอบแทน 5%)
+            // FV = P * [ ((1+r)^n - 1) / r ]
+            const savingsFutureValue_Annuity = monthlySavings * ( (Math.pow(1 + r, n) - 1) / r );
+
+            // 11.4: "ช่องว่าง" (The Gap)
+            const totalProjectedSavings = savingsFutureValue_LumpSum + savingsFutureValue_Annuity;
+            const gap = targetNestEggFuture - totalProjectedSavings;
+
+            // --- 12. ประเมิน "ไซส์พุง" ---
             let bellySize = '';
             let message = '';
-            let sizeClass = '';
-            // let mascotImageUrl = ''; // New: สำหรับเปลี่ยนรูป Mascot ตามไซส์ (uncomment ถ้าจะใช้)
+            let sizeClass = 'size-display';
 
             if (gap <= 0) {
                 bellySize = 'ไซส์ S (Fit!)';
-                message = "สุดยอด! คุณ Fit มาก! 'พุงเกษียณ' ไม่มีเลยครับ!";
-                sizeClass = 'size-S';
-                gapAmount.style.color = '#4CAF50'; 
-                // mascotImageUrl = 'path/to/your/mascot-s-size.png'; 
+                message = "สุดยอด! แผนของคุณ Fit มาก! 'พุงเกษียณ' ไม่มีเลยครับ!";
+                sizeClass += ' size-S';
             } else if (gap > 0 && gap <= 3000000) { // 3 ล้าน
                 bellySize = 'ไซส์ M';
                 message = "เยี่ยมเลย! พุงของคุณเล็กมาก (M) อีกนิดเดียวก็ Fit แล้วครับ!";
-                sizeClass = 'size-M';
-                gapAmount.style.color = '#f0ad4e';
-                // mascotImageUrl = 'path/to/your/mascot-m-size.png'; 
+                sizeClass += ' size-M';
             } else if (gap > 3000000 && gap <= 7000000) { // 7 ล้าน
                 bellySize = 'ไซส์ L';
-                message = "โอ้! พุงของคุณยังค่อนข้างใหญ่ (L) นะครับ แต่ไม่เป็นไร 'ผู้ช่วยโก๊ะ' อยู่ตรงนี้แล้ว!";
-                sizeClass = 'size-L';
-                gapAmount.style.color = '#d9534f';
-                // mascotImageUrl = 'path/to/your/mascot-l-size.png'; 
+                message = "โอ้! พุงของคุณยังค่อนข้างใหญ่ (L) นะครับ แต่ 'โก๊ะ' มีแผนลดให้ครับ!";
+                sizeClass += ' size-L';
             } else { // มากกว่า 7 ล้าน
                 bellySize = 'ไซส์ XL';
-                message = "โอ้โฮ! พุงไซส์ XL เลยครับ! นี่คือภารกิจเร่งด่วนที่เราต้องมา 'ปิดพุง' ไปด้วยกัน!";
-                sizeClass = 'size-XL';
-                gapAmount.style.color = '#c9302c';
-                // mascotImageUrl = 'path/to/your/mascot-xl-size.png'; 
-            }
-            
-            // --- 9. แสดงผลลัพธ์บนหน้าเว็บ ---
-            sizeDisplay.textContent = bellySize;
-            sizeDisplay.className = 'size-display ' + sizeClass; 
-            
-            mascotMessage.textContent = message;
-
-            if (gap <= 0) {
-                gapMessage.innerHTML = `คุณมีเงินเกินเป้าหมายอยู่ <span>${formatter.format(Math.abs(gap))} บาท</span> สุดยอด!`;
-            } else {
-                gapMessage.innerHTML = `ตอนนี้เรามี 'ช่องว่าง' (Gap) ที่ต้องปิดกันอีกประมาณ <span>${formatter.format(gap)} บาท</span>`;
+                message = "โอ้โฮ! พุงไซส์ XL เลยครับ! นี่คือภารกิจที่เราต้องมา 'บำบัด' กันด่วนครับ!";
+                sizeClass += ' size-XL';
             }
 
-            // uncomment บรรทัดนี้ ถ้าคุณสร้างรูป Mascot แยกตามไซส์ และต้องการให้มันเปลี่ยนรูป
-            // mascotResultImg.src = mascotImageUrl; 
+            // --- 13. แสดงผลลัพธ์ (Delay 2 วินาที) ---
+            setTimeout(function() {
+                // ซ่อน Wizard
+                form.style.display = 'none';
 
-            // --- 10. แสดงผลลัพธ์และ Next Steps ---
-            resultsArea.style.display = 'block';
-            nextSteps.style.display = 'block';
-            
-            // เลื่อนหน้าจอไปที่ผลลัพธ์
-            resultsArea.scrollIntoView({ behavior: 'smooth' });
+                // แสดงผลลัพธ์
+                sizeDisplay.textContent = bellySize;
+                sizeDisplay.className = sizeClass;
+                mascotMessage.textContent = message;
+
+                if (gap <= 0) {
+                    gapAmount.innerHTML = `คุณมีเงินเกินเป้าหมาย <span>${formatter.format(Math.abs(gap))} บาท</span>`;
+                    gapAmount.style.color = '#4CAF50';
+                } else {
+                    gapAmount.innerHTML = `แผนปัจจุบันของคุณยังมี 'ช่องว่าง' (Gap) อีกประมาณ <span>${formatter.format(gap)} บาท</span>`;
+                    gapAmount.style.color = '#d9534f';
+                }
+
+                resultsArea.style.display = 'block';
+                nextSteps.style.display = 'block';
+                
+                resultsArea.scrollIntoView({ behavior: 'smooth' });
+
+            }, 2000); // หน่วงเวลา 2 วินาที (ให้เหมือนกำลังคิด)
         });
+
+        // --- 14. เริ่มต้น Wizard ---
+        showStep(1); // เริ่มที่ Step 1
+
     </script>
 
 </body>
