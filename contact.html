@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองคิวบำบัด - สปากระเป๋า by ผู้ช่วยโก๊ะ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f5f6fa;
+            color: #34495e;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #00B894;
+            text-decoration: none;
+        }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { text-decoration: none; color: #34495e; font-weight: 700; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #00B894; }
+        .hamburger-menu { display: block; cursor: pointer; }
+        .hamburger-menu span { display: block; width: 25px; height: 3px; margin: 5px; background-color: #34495e; transition: all 0.3s ease; }
+        .hamburger-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .mobile-nav-links { display: none; list-style: none; padding: 0; margin: 0; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; width: 100%; text-align: center; }
+        .mobile-nav-links.active { display: block; }
+        .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
+        .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
+
+        /* --- (นี่คือ CSS ใหม่ สำหรับหน้า Contact) --- */
+        .contact-hero {
+            background-color: #34495e; /* สีเทาเข้ม (สีเดียวกับ Footer) */
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .contact-hero h1 {
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .contact-hero p {
+            font-size: 1rem;
+            color: #eee;
+            margin-top: 10px;
+        }
+        
+        .contact-content {
+            background-color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        /* (CSS ใหม่) --- "ห้องจองคิว (LINE OA)" --- */
+        .cta-box {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #E8F8F5; /* สีเขียว Mint สปา */
+            border: 2px dashed #00B894;
+            border-radius: 12px;
+            padding: 30px;
+        }
+        .cta-box h2 {
+            font-size: 1.6rem;
+            color: #34495e;
+            margin-top: 0;
+        }
+        .cta-box p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .cta-box .qr-code {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc; /* (Placeholder - ใส่ QR Code จริง) */
+            margin: 20px auto;
+            border: 5px solid white;
+        }
+        .cta-button-line {
+            background-color: #00B900; /* สีเขียว LINE */
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button-line:hover {
+            background-color: #00a000;
+        }
+        .cta-box .magic-word {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #d9534f;
+        }
+
+        /* (CSS ใหม่) --- "ช่องทางอื่น" --- */
+        .other-channels {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .other-channels h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+        }
+        .other-channels p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .other-channels a {
+            color: #00B894;
+            font-weight: 700;
+        }
+
+
+        .footer {
+            background-color: #34495e;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        .footer p { margin: 5px 0; }
+        .footer a { color: #00B894; text-decoration: none; }
+
+        /* --- (Responsive - สำหรับจอใหญ่) --- */
+        @media (min-width: 769px) {
+            .nav-links { display: flex; }
+            .hamburger-menu { display: none; }
+            .mobile-nav-links { display: none !important; }
+
+            .contact-hero h1 { font-size: 2.5rem; }
+            .contact-hero p { font-size: 1.1rem; }
+            .cta-box h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">🤸‍♂️ สปากระเป๋า by ผู้ช่วยโก๊ะ</a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">Therapist (ผู้ช่วยโก๊ะ)</a></li>
+            <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
+            <li><a href="index.html#clinics">ห้องวินิจฉัย (เครื่องมือ)</a></li>
+            <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li> </ul>
+
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <ul class="mobile-nav-links" id="mobile-menu">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">Therapist (ผู้ช่วยโก๊ะ)</a></li>
+        <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
+        <li><a href="index.html#clinics">ห้องวินิจฉัย (เครื่องมือ)</a></li>
+        <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>"ไม่ต้องเกรงใจนะครับ!"</h1>
+            <p>การ 'ขอความช่วยเหลือ' คือก้าวแรกที่ "กล้าหาญ" ที่สุด...<br>'ผู้ช่วยโก๊ะ' พร้อม "บำบัด" ให้คุณใน #พื้นที่ปลอดภัย ครับ</p>
+        </div>
+    </section>
+
+    <section class="contact-content">
+        <div class="container">
+            
+            <div class="cta-box">
+                <h2>ช่องทางที่ "ง่าย" และ "สบายใจ" ที่สุด:</h2>
+                <p>แอด LINE OA ของ "ผู้ช่วยโก๊ะ" (Therapist ส่วนตัวของคุณ) ได้เลยครับ!</p>
+                
+                <div class="qr-code">(...พื้นที่สำหรับ QR Code LINE OA ของคุณ...)</div>
+                
+                <a href="https://line.me/ti/p/@puchuaygoh" class="cta-button-line" target="_blank">
+                    (หรือคลิก... แอด LINE ที่นี่)
+                </a>
+
+                <p class="magic-word">
+                    (แอดแล้ว... พิมพ์คำว่า **"นัดบำบัด"**...<br>แล้ว 'โก๊ะ' จะรีบทักกลับไปจองคิวครับ!)
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="other-channels">
+        <div class="container">
+            <h3>ช่องทางอื่นๆ (เผื่อไม่สะดวกครับ)</h3>
+            <p>
+                คุณสามารถส่ง "อาการป่วย" (คำถาม) ของคุณมาที่
+                <br>
+                **Email:** <a href="mailto:your-email@example.com">your-email@example.com</a>
+                <br>
+                หรือติดตาม "ภารกิจ" ของเราได้ที่
+                <br>
+                **Facebook:** <a href="https://www.facebook.com/your-page-link" target="_blank">"บำนาญ สร้างง่าย... by ผู้ช่วยโก๊ะ"</a>
+            </p>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2568 | <a href="index.html">สปากระเป๋า by ผู้ช่วยโก๊ะ</a></p>
+            <p>บำบัดใจ... ให้กระเป๋า Fit & Firm</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
