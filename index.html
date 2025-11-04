@@ -248,6 +248,7 @@
 
 
         /* --- Responsive Design --- */
+        /* --- Responsive Design (ฉบับ "บำบัด" แล้ว!) --- */
         @media (max-width: 768px) {
             .nav-links {
                 display: none; 
@@ -263,8 +264,25 @@
                 width: 200px;
                 height: 200px;
             }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
+
+            /* === (นี่คือ "ยา" ที่เราจ่ายครับ!) === */
+            
+            /* 1. "ป้ายหลัก" (Hero) เล็กลง */
+            .hero h1 { 
+                font-size: 2rem; /* จาก 2.8rem (ใหญ่ไป) เหลือ 2rem */
+                line-height: 1.3; /* จัดบรรทัดให้สวยขึ้น */
+            } 
+            .hero p { 
+                font-size: 1rem; /* จาก 1.25rem เหลือ 1rem */
+            }
+
+            /* 2. "ป้ายรอง" (H2) ทั้งหมด เล็กลง */
+            .pain-points h2,
+            .clinics h2,
+            .about-text h2,
+            .final-cta h2 {
+                font-size: 1.8rem; /* จาก 2.2rem เหลือ 1.8rem */
+            }
         }
 
     </style>
@@ -369,3 +387,4 @@
 
 </body>
 </html>
+
