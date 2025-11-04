@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ========== 1. CSS (ฉบับ "ผ่าตัด" Mobile-First!) ========== */
+        /* ========== 1. CSS (ฉบับ "ผ่าตัดครั้งสุดท้าย"!) ========== */
         
         body {
             font-family: 'Kanit', sans-serif;
@@ -16,14 +16,14 @@
             color: #34495e;
             margin: 0;
             padding: 0;
-            line-height: 1.6; /* 📌 (ยาเสริม) เพิ่มระยะห่างบรรทัดให้อ่านง่ายขึ้น */
+            line-height: 1.6; /* อ่านง่ายขึ้น */
         }
 
         .container {
             width: 100%;
             max-width: 960px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px; /* 📌 เพิ่ม Padding ซ้าย-ขวา ให้มีช่องว่างเสมอ */
             box-sizing: border-box;
         }
 
@@ -42,55 +42,52 @@
         .nav-logo {
             font-weight: 700;
             font-size: 1.5rem;
-            color: #00B894; /* สีเขียวแบรนด์ */
+            color: #00B894;
             text-decoration: none;
         }
         .nav-links {
             list-style: none;
             margin: 0;
             padding: 0;
-            display: none; /* 📌 (Mobile-First) ซ่อนเมนูไว้ก่อน (สำหรับมือถือ) */
+            display: none; /* (Mobile-First) ซ่อนไว้ก่อน */
         }
-        .nav-links li {
-            margin-left: 20px;
-        }
+        .nav-links li { margin-left: 20px; }
         .nav-links a {
             text-decoration: none;
             color: #34495e;
             font-weight: 700;
             transition: color 0.3s ease;
         }
-        .nav-links a:hover {
-            color: #00B894;
-        }
+        .nav-links a:hover { color: #00B894; }
 
         /* --- 1.2 Hero Section (เคาน์เตอร์ต้อนรับ) --- */
         .hero {
-            background-color: #E8F8F5; /* สีเขียว Mint อ่อนๆ (สีสปา) */
-            padding: 60px 20px; /* 📌 (ยาเสริม) ลด Padding บน-ล่าง ให้กระชับขึ้น */
+            background-color: #E8F8F5;
+            padding: 60px 20px;
             text-align: center;
         }
         .hero h1 {
-            font-size: 1.8rem; /* 📌 (ยา Mobile) ฟอนต์เล็กสำหรับมือถือ */
+            font-size: 1.8rem; /* 📌 (ยา Mobile) ฟอนต์กระชับ */
             color: #34495e;
             margin-top: 0;
             margin-bottom: 10px;
             line-height: 1.4;
         }
         .hero p {
-            font-size: 0.9rem; /* 📌 (ยา Mobile) ฟอนต์เล็กสำหรับมือถือ */
+            font-size: 0.9rem; /* 📌 (ยา Mobile) ฟอนต์กระชับ */
             color: #555;
             margin-bottom: 30px;
         }
         .cta-button {
-            background-color: #4CAF50; /* สีเขียวสดใส */
+            background-color: #4CAF50;
             color: white;
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            padding: 12px 20px; /* 📌 (ยาแก้บั๊ก!) ลด "นวม" (Padding) ปุ่ม */
+            font-size: 1rem; /* 📌 (ยาแก้บั๊ก!) ลดฟอนต์ปุ่ม */
             font-weight: 700;
             text-decoration: none;
             border-radius: 8px;
             transition: background-color 0.3s ease;
+            display: inline-block; /* 📌 (ยาแก้บั๊ก!) */
         }
         .cta-button:hover {
             background-color: #43a047;
@@ -99,16 +96,16 @@
         /* --- 1.3 Pain Point Section (เช็กอาการ) --- */
         .pain-points {
             background-color: #ffffff;
-            padding: 60px 20px; /* 📌 (ยา Mobile) ปรับ Padding */
+            padding: 60px 0; /* 📌 (แก้บั๊ก) ให้ container จัดการ padding ซ้าย-ขวา */
         }
         .pain-points h2 {
             text-align: center;
-            font-size: 1.6rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1.6rem;
             margin-bottom: 40px;
         }
         .pain-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 📌 (ค่าเริ่มต้น) = 2 คอลัมน์ (สำหรับมือถือ) */
+            grid-template-columns: 1fr 1fr; /* 2 คอลัมน์ บนมือถือ */
             gap: 20px;
             text-align: center;
         }
@@ -118,32 +115,28 @@
             border-radius: 8px;
         }
         .pain-card .icon {
-            font-size: 2.5rem; /* 📌 (ยา Mobile) ไอคอนเล็กลง */
+            font-size: 2.5rem;
         }
         .pain-card h3 {
-            font-size: 1rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1rem;
             margin: 10px 0;
         }
 
-        /* --- 1.4 Clinic Section (ห้องบำบัดของเรา) --- */
+        /* --- 1.4 Clinic Section (ห้องบำบัด) --- */
         .clinics {
             background-color: #f5f6fa;
-            padding: 60px 20px; /* 📌 (ยา Mobile) ปรับ Padding */
+            padding: 60px 0; /* 📌 (แก้บั๊ก) ให้ container จัดการ padding ซ้าย-ขวา */
         }
         .clinics h2 {
             text-align: center;
-            font-size: 1.6rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1.6rem;
             margin-bottom: 40px;
         }
-        
-        /* 📌📌 (นี่คือ "ยา" ที่แรงที่สุด!) 📌📌 */
         .clinic-grid {
             display: grid;
-            grid-template-columns: 1fr; /* 📌 (ค่าเริ่มต้น) = 1 คอลัมน์ (สำหรับมือถือ!) */
+            grid-template-columns: 1fr; /* 📌 (ยาแก้บั๊ก!) บังคับ 1 คอลัมน์บนมือถือ */
             gap: 30px;
         }
-        /* 📌📌 (จบยาที่แรงที่สุด) 📌📌 */
-        
         .clinic-card {
             background-color: #ffffff;
             border-radius: 12px;
@@ -157,14 +150,13 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         .clinic-card h3 {
-            font-size: 1.5rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1.5rem;
             margin-top: 0;
         }
         .clinic-card p {
-            font-size: 0.9rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 0.9rem;
             color: #555;
-            min-height: auto; /* 📌 (ยา Mobile) ไม่ต้องบังคับความสูง */
-            margin-bottom: 15px; /* 📌 (ยา Mobile) เพิ่มระยะห่าง */
+            margin-bottom: 15px;
         }
         .clinic-button {
             display: inline-block;
@@ -173,7 +165,6 @@
             text-decoration: none;
             border-radius: 8px;
         }
-        /* Card 1: พุงเกษียณ */
         .clinic-card.retirement {
             border-bottom: 5px solid #00B894;
         }
@@ -181,7 +172,6 @@
             background-color: #00B894;
             color: white;
         }
-        /* Card 2: พุงภาษี */
         .clinic-card.tax {
             border-bottom: 5px solid #d9534f;
         }
@@ -194,45 +184,50 @@
         .about-teaser {
             background-color: #34495e;
             color: white;
-            padding: 60px 20px;
-            text-align: center; /* 📌 (Mobile-First) จัดกลางไว้ก่อน */
+            padding: 60px 0; /* 📌 (แก้บั๊ก) ให้ container จัดการ padding ซ้าย-ขวา */
+        }
+        /* 📌 (ยาแก้บั๊ก!) นี่คือ "การผ่าตัด" ที่แก้ภาพ 006 */
+        .about-teaser .container {
+            display: block; /* 📌 (ยาแก้บั๊ก!) "ยกเลิก" Flexbox บนมือถือ! */
+            text-align: center;
         }
         .about-image img {
-            width: 200px; /* 📌 (ยา Mobile) เล็กลง */
+            width: 200px;
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px; /* 📌 (ยา Mobile) เพิ่มระยะห่าง */
+            margin-bottom: 20px;
         }
         .about-text h2 {
-            font-size: 1.6rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1.6rem;
             margin-top: 0;
         }
         .about-text p {
-            font-size: 0.9rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 0.9rem;
             line-height: 1.7;
         }
         .about-text .cta-button {
             background-color: #FFC0CB;
             color: #34495e;
             font-weight: 700;
-            margin-top: 15px; /* 📌 (ยา Mobile) เพิ่มระยะห่าง */
-            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px; /* 📌 (ยาแก้บั๊ก!) ลด "นวม" */
+            font-size: 1rem; /* 📌 (ยาแก้บั๊ก!) ลดฟอนต์ปุ่ม */
         }
 
         /* --- 1.6 Final CTA Section (ห้อง VIP) --- */
         .final-cta {
             background-color: #fff;
-            padding: 60px 20px; /* 📌 (ยา Mobile) ปรับ Padding */
+            padding: 60px 20px;
             text-align: center;
         }
         .final-cta h2 {
-            font-size: 1.6rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1.6rem;
             margin-top: 0;
             margin-bottom: 15px;
         }
         .final-cta p {
-            font-size: 1rem; /* 📌 (ยา Mobile) ฟอนต์เล็ก */
+            font-size: 1rem;
             color: #555;
             margin-bottom: 30px;
         }
@@ -249,52 +244,48 @@
         .footer a { color: #00B894; text-decoration: none; }
 
 
-        /* --- 📌📌 (นี่คือ "คำสั่ง" สำหรับ "จอใหญ่" เท่านั้น!) 📌📌 --- */
+        /* --- 📌📌 (คำสั่งสำหรับ "จอใหญ่" เท่านั้น!) 📌📌 --- */
         @media (min-width: 769px) {
             
-            /* --- 1.1 ทำให้เมนู "โผล่" --- */
+            /* (โค้ดส่วนนี้ "เหมือนเดิม" กับที่ผมเคยให้ครับ) */
+            
             .nav-links {
                 display: flex;
             }
-
-            /* --- 1.2 ทำให้ Hero "ใหญ่" --- */
             .hero { padding: 80px 20px; }
             .hero h1 { font-size: 2.8rem; }
             .hero p { font-size: 1.25rem; }
 
-            /* --- 1.3 ทำให้ Pain Grid "ใหญ่" --- */
             .pain-points { padding: 60px 0; }
-            .pain-grid { grid-template-columns: repeat(4, 1fr); } /* 4 คอลัมน์ */
+            .pain-grid { grid-template-columns: repeat(4, 1fr); }
             .pain-card .icon { font-size: 3rem; }
             .pain-card h3 { font-size: 1.2rem; }
             .pain-points h2 { font-size: 2.2rem; }
 
-            /* --- 1.4 ทำให้ Clinic Grid "เป็น 2 คอลัมน์" --- */
             .clinics { padding: 60px 0; }
             .clinic-grid {
-                grid-template-columns: 1fr 1fr; /* 📌 (นี่ไงครับ!) 2 คอลัมน์สำหรับคอม */
+                grid-template-columns: 1fr 1fr; /* 2 คอลัมน์สำหรับคอม */
             }
             .clinics h2 { font-size: 2.2rem; }
             .clinic-card h3 { font-size: 1.8rem; }
             .clinic-card p { font-size: 1rem; min-height: 40px; }
 
-            /* --- 1.5 ทำให้ About Teaser "วางข้างกัน" --- */
+            /* (ผ่าตัด .about-teaser บนจอใหญ่) */
             .about-teaser {
-                display: flex;
-                align-items: center;
-                gap: 40px;
-                text-align: left; /* 📌 กลับเป็นชิดซ้าย */
                 padding: 60px 0;
             }
+            .about-teaser .container {
+                display: flex; /* 📌 "เปิด" Flexbox บนจอใหญ่ */
+                align-items: center;
+                gap: 40px;
+                text-align: left;
+            }
             .about-image img {
-                width: 250px;
-                height: 250px;
                 margin-bottom: 0;
             }
             .about-text h2 { font-size: 2.2rem; }
             .about-text p { font-size: 1.1rem; }
 
-            /* --- 1.6 ทำให้ Final CTA "ใหญ่" --- */
             .final-cta { padding: 80px 20px; }
             .final-cta h2 { font-size: 2.2rem; }
             .final-cta p { font-size: 1.2rem; }
@@ -402,6 +393,7 @@
 
 </body>
 </html>
+
 
 
 
