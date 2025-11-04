@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภารกิจ (บทความ) - สปากระเป๋า by ผู้ช่วยโก๊ะ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f5f6fa;
+            color: #34495e;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #00B894;
+            text-decoration: none;
+        }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { text-decoration: none; color: #34495e; font-weight: 700; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #00B894; }
+        .hamburger-menu { display: block; cursor: pointer; }
+        .hamburger-menu span { display: block; width: 25px; height: 3px; margin: 5px; background-color: #34495e; transition: all 0.3s ease; }
+        .hamburger-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .mobile-nav-links { display: none; list-style: none; padding: 0; margin: 0; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; width: 100%; text-align: center; }
+        .mobile-nav-links.active { display: block; }
+        .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
+        .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
+
+        /* --- (นี่คือ CSS ใหม่ สำหรับหน้า Articles) --- */
+        .articles-hero {
+            background-color: #fcf8e3; /* สีเหลืองอ่อน (สีความรู้) */
+            color: #8a6d3b;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid #f0ad4e;
+        }
+        .articles-hero h1 {
+            font-size: 2rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .articles-content {
+            background-color: #ffffff;
+            padding: 40px 0;
+        }
+        
+        /* (CSS ใหม่) --- "หมวดหมู่" --- */
+        .categories {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .categories a {
+            display: inline-block;
+            background-color: #eee;
+            color: #555;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .categories a:hover, .categories a.active {
+            background-color: #00B894;
+            color: white;
+        }
+
+        /* (CSS ใหม่) --- "การ์ดบทความ" --- */
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
+            gap: 30px;
+        }
+        .article-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .article-card-image {
+            width: 100%;
+            height: 180px;
+            background-color: #ccc; /* (Placeholder - ใส่รูป Thumbnail บทความ) */
+            background-size: cover;
+            background-position: center;
+        }
+        .article-card-body {
+            padding: 20px;
+        }
+        .article-card-body .category-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #00B894;
+            text-transform: uppercase;
+        }
+        .article-card-body h2 {
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+        .article-card-body p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .article-card-body a {
+            text-decoration: none;
+            color: #d9534f;
+            font-weight: 700;
+        }
+
+        .footer {
+            background-color: #34495e;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        .footer p { margin: 5px 0; }
+        .footer a { color: #00B894; text-decoration: none; }
+
+        /* --- (Responsive - สำหรับจอใหญ่) --- */
+        @media (min-width: 769px) {
+            .nav-links { display: flex; }
+            .hamburger-menu { display: none; }
+            .mobile-nav-links { display: none !important; }
+
+            .articles-hero h1 { font-size: 2.5rem; }
+            
+            /* (สำคัญ!) เปลี่ยนเป็น 2 คอลัมน์ บนจอใหญ่ */
+            .article-grid { 
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">🤸‍♂️ สปากระเป๋า by ผู้ช่วยโก๊ะ</a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">Therapist (ผู้ช่วยโก๊ะ)</a></li>
+            <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
+            <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li> 
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
+
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <ul class="mobile-nav-links" id="mobile-menu">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">Therapist (ผู้ช่วยโก๊ะ)</a></li>
+        <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
+        <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
+
+    <section class="articles-hero">
+        <div class="container">
+            <h1>"คลังความรู้" บำบัดใจ</h1>
+            <p>อ่าน "ภารกิจ" (บทความ) ที่ "ผู้ช่วยโก๊ะ" ย่อยมาให้แล้ว...<br>ง่าย, สบายใจ, และ "โก๊ะ" ที่สุดครับ</p>
+        </div>
+    </section>
+
+    <section class="articles-content">
+        <div class="container">
+            
+            <div class="categories">
+                <a href="#" class="active">ทั้งหมด (All)</a>
+                <a href="#">ภารกิจ: ปิดพุงเกษียณ</a>
+                <a href="#">ภารกิจ: ลดพุงภาษี</a>
+                <a href="#">ภารกิจ: บำบัดใจ (Mindset)</a>
+            </div>
+
+            <div class="article-grid">
+
+                <div class="article-card">
+                    <div class="article-card-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1679079456083-9f288e224e96?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="article-card-body">
+                        <span class="category-tag">ภารกิจ: ปิดพุงเกษียณ</span>
+                        <h2>(ตัวอย่าง) "ข้าวกล้อง RMF" คืออะไร? ทำไม 'โก๊ะ' ถึงรักมัน?</h2>
+                        <p>
+                            นี่คือ 'เครื่องมือเบิร์น' ภาษีที่ 'โก๊ะ' รักที่สุด! เพราะมันคือ 'ข้าวกล้อง'... 
+                            คุณ 'เบิร์น' ภาษีวันนี้ และมันจะกลายเป็น 'กล้ามเนื้อเกษียณ'...
+                        </p>
+                        <a href="#">อ่านภารกิจนี้ต่อ ></a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-card-image" style="background-image: url('https://images.unsplash.com/photo-1549421222-2631587498EA?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="article-card-body">
+                        <span class="category-tag">ภารกิจ: บำบัดใจ (Mindset)</span>
+                        <h2>(ตัวอย่าง) "ไพ่บำบัด" ใบที่ 1: กระจกวัยเด็ก</h2>
+                        <p>
+                            'พุง' ของเรามักจะโตตาม 'ความเชื่อ' หรือ 'ความกลัว' เก่าๆ เรื่องเงิน... 
+                            ลองถามตัวเองเงียบๆ นะครับ... 'ความทรงจำแรกของคุณเกี่ยวกับเงินคืออะไร?'...
+                        </p>
+                        <a href="#">อ่านภารกิจนี้ต่อ ></a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-card-image" style="background-image: url('https://images.unsplash.com/photo-1591033594202-b6aaa3160a37?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="article-card-body">
+                        <span class="category-tag">ภารกิจ: ลดพุงภาษี</span>
+                        <h2>(ตัวอย่าง) "ประกันบำนาญ" vs "Unit-Linked" เลือก "ไม้ตาย" แบบไหนดี?</h2>
+                        <p>
+                            "สายใจสู้" หรือ "สายใจสงบ"? มาดูการเปรียบเทียบ "ยิม 3-in-1" 
+                            กับ "เชฟการันตี" กันครับ ว่า "ใจ" ของคุณเหมาะกับอะไร...
+                        </p>
+                        <a href="#">อ่านภารกิจนี้ต่อ ></a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <div class="article-card-image" style="background-image: url('https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1470&auto=format&fit=crop');"></div>
+                    <div class="article-card-body">
+                        <span class="category-tag">ภารกิจ: ปิดพุงเกษียณ</span>
+                        <h2>(ตัวอย่าง) อธิบาย "กฎ 4%" (ฉบับฟาร์มไก่ไข่)</h2>
+                        <p>
+                            "กฎ 4%" คืออะไร? มันคือ "ฟาร์มไก่ไข่" ที่จะบอกว่าเราจะ "กินไข่" ยังไง... 
+                            โดยที่ "ไม่ฆ่าแม่ไก่" (เงินต้น) ของเราจนหมด...
+                        </p>
+                        <a href="#">อ่านภารกิจนี้ต่อ ></a>
+                    </div>
+                </div>
+
+            </div> </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2568 | <a href="index.html">สปากระเป๋า by ผู้ช่วยโก๊ะ</a></p>
+            <p>บำบัดใจ... ให้กระเป๋า Fit & Firm</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
