@@ -24,6 +24,8 @@
             padding: 0 20px;
             box-sizing: border-box;
         }
+
+        /* --- 1.1 Navigation Bar (เมนูสปา) --- */
         .navbar {
             background-color: #ffffff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -41,23 +43,78 @@
             color: #00B894;
             text-decoration: none;
         }
-        .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
+        
+        /* (ยาแก้บั๊ก 2) --- เมนู Desktop (ซ่อนบนมือถือ) --- */
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: none; /* (Mobile-First) ซ่อนไว้ก่อน */
+        }
         .nav-links li { margin-left: 20px; }
         .nav-links a { text-decoration: none; color: #34495e; font-weight: 700; transition: color 0.3s ease; }
         .nav-links a:hover { color: #00B894; }
 
-        /* --- (นี่คือ CSS ใหม่ สำหรับหน้า About) --- */
+        /* (ยาแก้บั๊ก 2) --- (สร้างปุ่ม "แฮมเบอร์เกอร์" ☰) --- */
+        .hamburger-menu {
+            display: block; /* (Mobile-First) "โชว์" ปุ่มนี้บนมือถือ */
+            cursor: pointer;
+        }
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background-color: #34495e;
+            transition: all 0.3s ease;
+        }
+        /* (นี่คือ "X" ตอนเมนูเปิด) */
+        .hamburger-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+        /* (ยาแก้บั๊ก 2) --- (สร้าง "เมนูมือถือ" ที่ซ่อนอยู่) --- */
+        .mobile-nav-links {
+            display: none; /* (Mobile-First) ซ่อนไว้ก่อน */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: white;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 60px; /* (ปรับตามความสูงของ Navbar) */
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .mobile-nav-links.active {
+            display: block; /* (โชว์) เมื่อกดปุ่ม */
+        }
+        .mobile-nav-links li {
+            padding: 15px 0;
+            border-top: 1px solid #f0f0f0;
+        }
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #34495e;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* --- (Hero) --- */
         .about-hero {
-            background-color: #00B894; /* สีเขียวแบรนด์ */
+            background-color: #00B894;
             color: white;
             padding: 60px 20px;
             text-align: center;
         }
         .about-hero h1 {
-            font-size: 2rem;
+            font-size: 1.8rem; /* (ยา Mobile) */
             margin: 0;
             line-height: 1.4;
         }
+
+        /* --- (Content) --- */
         .about-content {
             background-color: #ffffff;
             padding: 40px 0;
@@ -66,16 +123,19 @@
             margin-bottom: 40px;
         }
         .content-section h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem; /* (ยา Mobile) */
             color: #00B894;
             text-align: center;
             margin-bottom: 20px;
         }
+        
+        /* (ยาแก้บั๊ก 1) --- เพิ่มขนาดฟอนต์เนื้อหา! --- */
         .content-section p {
-            font-size: 1rem;
+            font-size: 1.1rem; /* 📌 (ยาแก้บั๊ก!) เพิ่มขนาดตัวอักษร! (จากเดิมเล็กไป) */
             line-height: 1.8;
             color: #555;
         }
+        
         .philosophy-grid {
             display: grid;
             grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
@@ -91,21 +151,19 @@
             font-size: 1.2rem;
         }
         
-        /* --- (CSS ใหม่) Teaser ไพ่บำบัด --- */
+        /* --- (Teaser ไพ่บำบัด) --- */
         .card-teaser {
-            background-color: #E8F8F5; /* สีเขียว Mint อ่อน */
+            background-color: #E8F8F5;
             padding: 40px 20px;
             text-align: center;
         }
         .card-teaser h2 {
-            font-size: 1.8rem;
-            color: #34495e;
+            font-size: 1.6rem; /* (ยา Mobile) */
         }
         .card-teaser .card-image {
             width: 150px;
             height: auto;
             margin: 20px auto;
-            /* (Placeholder) ใส่รูปไพ่จริงตรงนี้ */
             background-color: #ccc; 
             border: 2px solid #00B894;
             border-radius: 10px;
@@ -113,7 +171,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* --- (CSS ใหม่) Next Step CTA --- */
+        /* --- (CTA) --- */
         .next-step-cta {
             background-color: #34495e;
             color: white;
@@ -125,7 +183,7 @@
             margin-top: 0;
         }
         .cta-button {
-            background-color: #FFC0CB; /* สีชมพู */
+            background-color: #FFC0CB;
             color: #34495e;
             padding: 12px 20px;
             font-size: 1rem;
@@ -136,6 +194,7 @@
             margin-top: 15px;
         }
 
+        /* --- (Footer) --- */
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -148,11 +207,12 @@
 
         /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
-            .nav-links { display: flex; }
+            .nav-links { display: flex; } /* 📌 (โชว์) เมนู Desktop */
+            .hamburger-menu { display: none; } /* 📌 (ซ่อน) ปุ่ม ☰ บน Desktop */
+            .mobile-nav-links { display: none !important; } /* 📌 (ซ่อน) เมนูมือถือบน Desktop (สำคัญ!) */
+
             .about-hero h1 { font-size: 2.5rem; }
-            .content-section {
-                padding: 0 20px; /* เพิ่ม padding ข้างๆ บนจอใหญ่ */
-            }
+            .content-section { padding: 0 20px; }
             .content-section h2 { font-size: 2.2rem; }
             .philosophy-grid { grid-template-columns: 1fr 1fr; } /* 2 คอลัมน์ */
             .next-step-cta h2 { font-size: 2rem; }
@@ -163,13 +223,29 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">🤸‍♂️ สปากระเป๋า by ผู้ช่วยโก๊ะ</a>
+        
         <ul class="nav-links">
             <li><a href="index.html">หน้าแรก</a></li>
             <li><a href="about.html" style="color: #00B894;">Therapist (ผู้ช่วยโก๊ะ)</a></li> <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
             <li><a href="index.html#clinics">ห้องวินิจฉัย (เครื่องมือ)</a></li>
             <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
         </ul>
+
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+    
+    <ul class="mobile-nav-links" id="mobile-menu">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html" style="color: #00B894;">Therapist (ผู้ช่วยโก๊ะ)</a></li>
+        <li><a href="services.html">เมนูบำบัด (บริการ)</a></li>
+        <li><a href="index.html#clinics">ห้องวินิจฉัย (เครื่องมือ)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
+
 
     <section class="about-hero">
         <div class="container">
@@ -231,13 +307,24 @@
         </div>
     </section>
 
-
     <footer class="footer">
         <div class="container">
             <p>© 2568 | <a href="index.html">สปากระเป๋า by ผู้ช่วยโก๊ะ</a></p>
             <p>บำบัดใจ... ให้กระเป๋า Fit & Firm</p>
         </div>
     </footer>
+
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            // "สลับ" (Toggle) คลาส 'active'
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>
