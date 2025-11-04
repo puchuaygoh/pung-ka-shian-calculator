@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* ========== 1. CSS (ดีไซน์) ========== */
-        
+        /* (โค้ด CSS ของ Wizard นี้... "เหมือนเดิม" ครับ... ไม่ต้องแก้) */
         body {
             font-family: 'Kanit', sans-serif;
             background-color: #f5f6fa;
@@ -20,7 +19,6 @@
             margin: 0;
             padding: 20px;
         }
-
         .container {
             width: 100%;
             max-width: 600px;
@@ -30,8 +28,6 @@
             overflow: hidden;
             border: 1px solid #e0e0e0;
         }
-
-        /* --- ส่วน Header --- */
         .header {
             background-color: #00B894; /* สีเขียว Teal */
             color: white;
@@ -48,13 +44,9 @@
             margin-top: 15px;
             border-radius: 50%;
         }
-
-        /* --- Wizard Form Container --- */
         .calculator-wizard {
             padding: 32px;
         }
-
-        /* --- Progress Bar --- */
         .progress-bar {
             display: flex;
             height: 10px;
@@ -64,7 +56,7 @@
             overflow: hidden;
         }
         .progress-step {
-            width: 20%; /* 100% / 5 steps */
+            width: 20%;
             height: 100%;
             background-color: #00B894;
             opacity: 0;
@@ -73,22 +65,17 @@
         .progress-step.active {
             opacity: 1;
         }
-
-        /* --- Wizard Steps --- */
         .wizard-step {
-            display: none; /* ซ่อนทุก Step ไว้ก่อน */
+            display: none;
             animation: fadeIn 0.5s;
         }
         .wizard-step.active {
             display: block;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- Form Elements --- */
         .form-group {
             display: flex;
             flex-direction: column;
@@ -98,7 +85,7 @@
             margin-bottom: 12px;
             font-weight: 700;
             color: #34495e;
-            font-size: 1.25rem; /* ตัวใหญ่ขึ้น */
+            font-size: 1.25rem;
             text-align: center;
         }
         .form-group input {
@@ -115,8 +102,6 @@
             border-color: #00B894;
             box-shadow: 0 0 0 3px rgba(0,184,148,0.2);
         }
-
-        /* --- Navigation Buttons --- */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
@@ -140,21 +125,19 @@
             background-color: #ddd;
         }
         .next-btn {
-            background-color: #4CAF50; /* สีเขียวสดใส */
+            background-color: #4CAF50;
             color: white;
         }
         .next-btn:hover {
             background-color: #43a047;
         }
         .submit-btn {
-            background-color: #d9534f; /* สีแดงสำหรับปุ่มสุดท้าย! */
+            background-color: #d9534f;
             color: white;
         }
         .submit-btn:hover {
             background-color: #c9302c;
         }
-
-        /* --- Loading Step --- */
         .loading-step {
             text-align: center;
             padding: 40px 0;
@@ -176,10 +159,8 @@
             font-size: 1.1rem;
             color: #555;
         }
-
-        /* --- ส่วนแสดงผลลัพธ์ (Output) --- */
         .results-area {
-            display: none; /* ซ่อนไว้ก่อน */
+            display: none;
             padding: 24px;
             text-align: center;
             border-top: 1px solid #e0e0e0;
@@ -215,8 +196,6 @@
         .results-area .size-M { color: #f0ad4e; } /* M */
         .results-area .size-L { color: #d9534f; } /* L */
         .results-area .size-XL { color: #c9302c; } /* XL */
-
-        /* --- ส่วนก้าวต่อไป (Next Steps) --- */
         .next-steps {
             background-color: #fdfdfd;
             border-top: 1px solid #e0e0e0;
@@ -229,7 +208,7 @@
             color: #00B894;
         }
         .lead-magnet {
-            background-color: #fff0f3; /* สีชมพูอ่อน */
+            background-color: #fff0f3;
             border: 1px dashed #FFC0CB;
             border-radius: 8px;
             padding: 16px;
@@ -242,7 +221,7 @@
             font-size: 1.2rem;
         }
         .lead-magnet button {
-            background-color: #FFC0CB; /* สีชมพูพาสเทล */
+            background-color: #FFC0CB;
             color: #34495e;
             border: none;
             padding: 12px 24px;
@@ -255,20 +234,15 @@
         .lead-magnet button:hover {
             background-color: #ffafc0;
         }
-
     </style>
 </head>
 <body>
-
     <div class="container">
-        
         <header class="header">
             <img src="mascot.png" alt="Mascot ผู้ช่วยโก๊ะ" class="mascot-header">
             <h1>🤸‍♂️ ภารกิจ: วินิจฉัยพุงเกษียณ!</h1>
         </header>
-
         <form class="calculator-wizard" id="wizard-form">
-
             <div class="progress-bar">
                 <div class="progress-step active" id="p-step-1"></div>
                 <div class="progress-step" id="p-step-2"></div>
@@ -276,7 +250,6 @@
                 <div class="progress-step" id="p-step-4"></div>
                 <div class="progress-step" id="p-step-5"></div>
             </div>
-            
             <div class="wizard-step active" id="step-1">
                 <div class="form-group">
                     <label for="currentAge">สวัสดีครับ! 'โก๊ะ' ขอเริ่ม 'วินิจฉัย' นะครับ...<br>ปัจจุบันคุณอายุเท่าไหร่ครับ?</label>
@@ -286,7 +259,6 @@
                     <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
                 </div>
             </div>
-
             <div class="wizard-step" id="step-2">
                 <div class="form-group">
                     <label for="retirementAge">ยอดเยี่ยมครับ! แล้วคุณ 'ฝัน' ว่าอยากเกษียณตอนอายุเท่าไหร่ครับ?</label>
@@ -297,7 +269,6 @@
                     <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
                 </div>
             </div>
-
             <div class="wizard-step" id="step-3">
                 <div class="form-group">
                     <label for="monthlyExpenses">คุณอยากใช้ชีวิตสบายๆ เดือนละเท่าไหร่ครับ? (คิดเป็นค่าเงินวันนี้)</label>
@@ -308,7 +279,6 @@
                     <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
                 </div>
             </div>
-
             <div class="wizard-step" id="step-4">
                 <div class="form-group">
                     <label for="currentSavings">ตอนนี้ คุณมี 'กล้ามเนื้อ' (เงินเก็บ/ลงทุน) ที่เตรียมไว้แล้วเท่าไหร่ครับ?</label>
@@ -319,7 +289,6 @@
                     <button type="button" class="next-btn" onclick="nextPrev(1)">ต่อไป ></button>
                 </div>
             </div>
-
             <div class="wizard-step" id="step-5">
                 <div class="form-group">
                     <label for="monthlySavings">สุดท้ายครับ! คุณตั้งใจจะ 'สร้างกล้ามเนื้อ' (ออม/ลงทุน) เพิ่มอีกเดือนละเท่าไหร่ครับ?</label>
@@ -330,15 +299,12 @@
                     <button type="submit" class="submit-btn">วินิจฉัยเลย!</button>
                 </div>
             </div>
-
             <div class="wizard-step loading-step" id="step-6">
                 <div class="loader"></div>
                 <p>'ผู้ช่วยโก๊ะ' กำลังวินิจฉัย 'ไซส์พุง' ของคุณ...
                 <br><span style="font-size: 0.9rem;">(คิดเงินเฟ้อ 3% และผลตอบแทนลงทุน 5% นะครับ)</span></p>
             </div>
-            
         </form>
-        
         <section class="results-area" id="results-area">
             <img src="mascot.png" alt="Mascot ผู้ช่วยโก๊ะ" class="mascot-result" id="mascot-result-img">
             <h2 class="size-display" id="belly-size-display">ไซส์ L</h2>
@@ -348,30 +314,26 @@
                 <span id="gap-amount">7,500,000 บาท</span>
             </p>
         </section>
-
         <section class="next-steps" id="next-steps" style="display: none;">
             <h3>แผนลดพุงสำหรับคุณ 🚀</h3>
             <div class="lead-magnet">
                 <p>รับฟรี! E-book "5 สูตรลับสลายพุงเกษียณ"</p>
-                <button type="button" id="cta-button">แอด LINE 'ผู้ช่วยโก๊ะ' เพื่อรับเลย!</button>
+                <a href="https://line.me/ti/p/@puchuaygoh" target="_blank" style="text-decoration: none;">
+                    <button type="button">แอด LINE 'ผู้ช่วยโก๊ะ' เพื่อรับเลย!</button>
+                </a>
             </div>
         </section>
-        
     </div>
-
-
     <script>
-        // --- 1. ตั้งค่าคงที่ (ตามที่คุณตัดสินใจ!) ---
-        const INFLATION_RATE = 0.03;         // อัตราเงินเฟ้อ (3%)
-        const INVESTMENT_RETURN_RATE = 0.05; // อัตราผลตอบแทน (5%)
-        const WITHDRAWAL_RATE = 0.04;        // กฎ 4% Rule
+        // --- 1. ตั้งค่าคงที่ (5%) ---
+        const INFLATION_RATE = 0.03;
+        const INVESTMENT_RETURN_RATE = 0.05; // 📌 (5% ตามที่เราตกลง!)
+        const WITHDRAWAL_RATE = 0.04;
 
-        // --- 2. ตัวแปร Wizard ---
+        // (โค้ด JavaScript ที่เหลือ "เหมือนเดิม" ครับ... ไม่ต้องแก้)
         let currentStep = 1;
         const steps = document.querySelectorAll(".wizard-step");
         const progressSteps = document.querySelectorAll(".progress-step");
-
-        // --- 3. เลือก Elements ---
         const form = document.getElementById('wizard-form');
         const resultsArea = document.getElementById('results-area');
         const nextSteps = document.getElementById('next-steps');
@@ -379,25 +341,15 @@
         const mascotMessage = document.getElementById('mascot-message');
         const gapAmount = document.getElementById('gap-amount');
         
-        // --- 4. ปุ่ม CTA ไป LINE OA ---
-        const ctaButton = document.getElementById('cta-button');
-        ctaButton.addEventListener('click', function() {
-            // !! ให้เปลี่ยน 'YOUR_LINE_OA_LINK' เป็นลิงก์ LINE OA ของคุณ !!
-            window.open('https://line.me/ti/p/@puchuaygoh', '_blank'); 
-        });
+        // (เราลบปุ่ม ctaButton ที่ซ้ำซ้อนออกไป... เพราะเราย้ายลิงก์ไปใส่ใน HTML โดยตรงแล้ว)
 
-        // --- 5. ตัวช่วย Format ตัวเลข ---
         const formatter = new Intl.NumberFormat('th-TH', {
             style: 'decimal',
             maximumFractionDigits: 0,
         });
-
-        // --- 6. ฟังก์ชันแสดง Step ---
         function showStep(n) {
             steps.forEach(step => step.classList.remove('active'));
             document.getElementById(`step-${n}`).classList.add('active');
-
-            // อัปเดต Progress Bar
             progressSteps.forEach((pStep, index) => {
                 if (index < n) {
                     pStep.classList.add('active');
@@ -407,24 +359,18 @@
             });
             currentStep = n;
         }
-
-        // --- 7. ฟังก์ชัน Next/Prev ---
         function nextPrev(n) {
-            // Validate Input
             const currentStepInputs = steps[currentStep - 1].querySelectorAll("input");
             let isValid = true;
             currentStepInputs.forEach(input => {
                 if (!input.value || parseFloat(input.value) < 0) {
-                    input.style.borderColor = "#d9534f"; // สีแดง
+                    input.style.borderColor = "#d9534f";
                     isValid = false;
                 } else {
                     input.style.borderColor = "#ddd";
                 }
             });
-
-            if (n === 1 && !isValid) return false; // ถ้ากดยืนยันแล้วไม่ผ่าน ไม่ต้องไปต่อ
-
-            // ตรวจสอบอายุเกษียณ (Step 2)
+            if (n === 1 && !isValid) return false;
             if (currentStep === 2 && n === 1) {
                 const currentAge = parseFloat(document.getElementById('currentAge').value);
                 const retirementAge = parseFloat(document.getElementById('retirementAge').value);
@@ -434,89 +380,56 @@
                     return false;
                 }
             }
-
             showStep(currentStep + n);
         }
-
-        // --- 8. Event Listener เมื่อกด "วินิจฉัยเลย!" (Submit) ---
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // ป้องกันหน้าเว็บโหลดใหม่
-            
-            // Validate Step 5
+            event.preventDefault();
             const lastInput = document.getElementById('monthlySavings');
             if (!lastInput.value || parseFloat(lastInput.value) < 0) {
                  lastInput.style.borderColor = "#d9534f";
                  alert('กรุณากรอกข้อมูลให้ครบนะครับ');
                  return;
             }
-
-            // --- 9. ดึงข้อมูล 5 ข้อ ---
             const currentAge = parseFloat(document.getElementById('currentAge').value);
             const retirementAge = parseFloat(document.getElementById('retirementAge').value);
             const monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
             const currentSavings = parseFloat(document.getElementById('currentSavings').value);
             const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
-
-            // --- 10. แสดง Loading ---
-            showStep(6); // แสดง Step 6 (Loading)
-
-            // --- 11. หัวใจการคำนวณ (ฉบับอัปเกรด 5%) ---
-            
+            showStep(6);
             const yearsToRetirement = retirementAge - currentAge;
-            const r = INVESTMENT_RETURN_RATE / 12; // อัตราผลตอบแทน 5% ต่อเดือน
-            const n = yearsToRetirement * 12; // จำนวนงวด (เดือน)
-            
-            // 11.1: เป้าหมาย (Target Goal)
-            // (FV ของค่าใช้จ่าย โดยคิดเงินเฟ้อ 3% -> แล้วคำนวณ 4% Rule)
+            const r = INVESTMENT_RETURN_RATE / 12;
+            const n = yearsToRetirement * 12;
             const futureMonthlyExpenses = monthlyExpenses * Math.pow((1 + INFLATION_RATE), yearsToRetirement);
             const targetNestEggFuture = (futureMonthlyExpenses * 12) / WITHDRAWAL_RATE;
-
-            // 11.2: เงินเก็บปัจจุบัน (Projected Lump Sum)
-            // (FV ของเงินก้อนปัจจุบัน โดยคิดผลตอบแทน 5%)
             const savingsFutureValue_LumpSum = currentSavings * Math.pow((1 + INVESTMENT_RETURN_RATE), yearsToRetirement);
-
-            // 11.3: เงินออมต่อเดือน (Projected Annuity)
-            // (FV ของเงินออมต่อเดือน โดยคิดผลตอบแทน 5%)
-            // FV = P * [ ((1+r)^n - 1) / r ]
             const savingsFutureValue_Annuity = monthlySavings * ( (Math.pow(1 + r, n) - 1) / r );
-
-            // 11.4: "ช่องว่าง" (The Gap)
             const totalProjectedSavings = savingsFutureValue_LumpSum + savingsFutureValue_Annuity;
             const gap = targetNestEggFuture - totalProjectedSavings;
-
-            // --- 12. ประเมิน "ไซส์พุง" ---
             let bellySize = '';
             let message = '';
             let sizeClass = 'size-display';
-
             if (gap <= 0) {
                 bellySize = 'ไซส์ S (Fit!)';
                 message = "สุดยอด! แผนของคุณ Fit มาก! 'พุงเกษียณ' ไม่มีเลยครับ!";
                 sizeClass += ' size-S';
-            } else if (gap > 0 && gap <= 3000000) { // 3 ล้าน
+            } else if (gap > 0 && gap <= 3000000) {
                 bellySize = 'ไซส์ M';
                 message = "เยี่ยมเลย! พุงของคุณเล็กมาก (M) อีกนิดเดียวก็ Fit แล้วครับ!";
                 sizeClass += ' size-M';
-            } else if (gap > 3000000 && gap <= 7000000) { // 7 ล้าน
+            } else if (gap > 3000000 && gap <= 7000000) {
                 bellySize = 'ไซส์ L';
                 message = "โอ้! พุงของคุณยังค่อนข้างใหญ่ (L) นะครับ แต่ 'โก๊ะ' มีแผนลดให้ครับ!";
                 sizeClass += ' size-L';
-            } else { // มากกว่า 7 ล้าน
+            } else {
                 bellySize = 'ไซส์ XL';
                 message = "โอ้โฮ! พุงไซส์ XL เลยครับ! นี่คือภารกิจที่เราต้องมา 'บำบัด' กันด่วนครับ!";
                 sizeClass += ' size-XL';
             }
-
-            // --- 13. แสดงผลลัพธ์ (Delay 2 วินาที) ---
             setTimeout(function() {
-                // ซ่อน Wizard
                 form.style.display = 'none';
-
-                // แสดงผลลัพธ์
                 sizeDisplay.textContent = bellySize;
                 sizeDisplay.className = sizeClass;
                 mascotMessage.textContent = message;
-
                 if (gap <= 0) {
                     gapAmount.innerHTML = `คุณมีเงินเกินเป้าหมาย <span>${formatter.format(Math.abs(gap))} บาท</span>`;
                     gapAmount.style.color = '#4CAF50';
@@ -524,19 +437,12 @@
                     gapAmount.innerHTML = `แผนปัจจุบันของคุณยังมี 'ช่องว่าง' (Gap) อีกประมาณ <span>${formatter.format(gap)} บาท</span>`;
                     gapAmount.style.color = '#d9534f';
                 }
-
                 resultsArea.style.display = 'block';
                 nextSteps.style.display = 'block';
-                
                 resultsArea.scrollIntoView({ behavior: 'smooth' });
-
-            }, 2000); // หน่วงเวลา 2 วินาที (ให้เหมือนกำลังคิด)
+            }, 2000);
         });
-
-        // --- 14. เริ่มต้น Wizard ---
-        showStep(1); // เริ่มที่ Step 1
-
+        showStep(1);
     </script>
-
 </body>
 </html>
