@@ -37,7 +37,7 @@
         }
         .nav-logo {
             font-weight: 700;
-            font-size: 1.3rem; /* (ฟอนต์โลโก้) */
+            font-size: 1.3rem;
             color: #34495e; 
             text-decoration: none;
         }
@@ -54,10 +54,8 @@
         .mobile-nav-links.active { display: block; }
         .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
         .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
-
-        /* --- (CSS "about.html" ใหม่!) --- */
         .about-hero {
-            background-color: #00B894; /* 📌 (สีเขียว "บำบัด") */
+            background-color: #00B894;
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -67,7 +65,6 @@
             margin: 0;
             line-height: 1.4;
         }
-        
         .about-content {
             background-color: #ffffff;
             padding: 40px 0;
@@ -81,17 +78,14 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        /* (เพิ่มขนาดฟอนต์เนื้อหา!) */
         .content-section p {
-            font-size: 1.1rem; /* 📌 (อ่านชัด!) */
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
         }
-        
-        /* (ปรัชญา) */
         .philosophy-grid {
             display: grid;
-            grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
+            grid-template-columns: 1fr;
             gap: 20px;
         }
         .philo-card {
@@ -108,10 +102,8 @@
             display: block;
             margin-bottom: 10px;
         }
-        
-        /* (Teaser ไพ่บำบัด) */
         .card-teaser {
-            background-color: #E8F8F5; /* สีเขียว Mint อ่อน */
+            background-color: #E8F8F5;
             padding: 40px 20px;
             text-align: center;
         }
@@ -128,8 +120,6 @@
             padding: 40px 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
-        /* (CTA) */
         .next-step-cta {
             background-color: #34495e;
             color: white;
@@ -151,7 +141,6 @@
             display: inline-block;
             margin-top: 15px;
         }
-
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -161,17 +150,15 @@
         }
         .footer p { margin: 5px 0; }
         .footer a { color: #00B894; text-decoration: none; }
-
-        /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
             .nav-links { display: flex; }
+            .nav-logo { font-size: 1.5rem; }
             .hamburger-menu { display: none; }
             .mobile-nav-links { display: none !important; }
-
             .about-hero h1 { font-size: 2.5rem; }
             .content-section { padding: 0 20px; }
             .content-section h2 { font-size: 2.2rem; }
-            .philosophy-grid { grid-template-columns: 1fr 1fr; } /* 📌 (เปลี่ยนเป็น 2 คอลัมน์) */
+            .philosophy-grid { grid-template-columns: 1fr 1fr; }
             .next-step-cta h2 { font-size: 2rem; }
         }
     </style>
@@ -180,31 +167,26 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
-        
         <ul class="nav-links">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html" style="color: #00B894;">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
-
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html" style="color: #00B894;">เกี่ยวกับ 'โก๊ะ'</a></li> <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+            <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+            <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
         <div class="hamburger-menu" id="hamburger-btn">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
-    
     <ul class="mobile-nav-links" id="mobile-menu">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html" style="color: #00B894;">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html" style="color: #00B894;">เกี่ยวกับ 'โก๊ะ'</a></li> <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+        <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+        <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
 
     <section class="about-hero">
         <div class="container">
@@ -291,7 +273,6 @@
             <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
         </div>
     </footer>
-
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
