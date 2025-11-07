@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภารกิจ: อธิบาย "กฎ 4%" (ฉบับฟาร์มไก่ไข่ 🐔)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f5f6fa;
+            color: #34495e;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #34495e; 
+            text-decoration: none;
+        }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { text-decoration: none; color: #34495e; font-weight: 700; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #00B894; }
+        .hamburger-menu { display: block; cursor: pointer; }
+        .hamburger-menu span { display: block; width: 25px; height: 3px; margin: 5px; background-color: #34495e; transition: all 0.3s ease; }
+        .hamburger-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .mobile-nav-links { display: none; list-style: none; padding: 0; margin: 0; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; width: 100%; text-align: center; }
+        .mobile-nav-links.active { display: block; }
+        .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
+        .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
+
+        /* --- (CSS "หน้าบทความ") --- */
+        .article-header {
+            width: 100%;
+            height: 300px;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            /* (รูปตัวอย่าง) (สำคัญ!) "ลูกพี่" (คุณ) ต้อง "เปลี่ยน" (Change) 'background-image: url(...)' นี้นะครับ! */
+            background-image: url('https://plus.unsplash.com/premium_photo-1661389027878-5a024f9f17d7?q=80&w=1470&auto=format&fit=crop');
+        }
+        .article-container {
+            max-width: 700px;
+            margin: -80px auto 40px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            z-index: 10;
+        }
+        .article-container .category-tag {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #00B894;
+            text-transform: uppercase;
+        }
+        .article-container h1 {
+            font-size: 2rem;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        .article-container .author-info {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .article-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+        .article-body h2 {
+            font-size: 1.6rem;
+            color: #00B894;
+            margin-top: 40px;
+        }
+        .article-body h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            border-left: 4px solid #f0ad4e;
+            padding-left: 10px;
+        }
+        /* (CSS "มนต์สะกด" CTA) */
+        .urgent-cta {
+            background-color: #E8F8F5; /* 📌 (สีเขียว Mint) */
+            border: 2px dashed #00B894;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .urgent-cta h2 {
+            font-size: 1.6rem;
+            color: #00B894;
+            margin-top: 0;
+        }
+        .cta-button-green {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button-green:hover {
+            background-color: #43a047;
+        }
+
+        .footer {
+            background-color: #34495e;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+        .footer p { margin: 5px 0; }
+        .footer a { color: #00B894; text-decoration: none; }
+
+        @media (min-width: 769px) {
+            .nav-links { display: flex; }
+            .nav-logo { font-size: 1.5rem; }
+            .hamburger-menu { display: none; }
+            .mobile-nav-links { display: none !important; }
+            .article-header { height: 400px; }
+            .article-container { padding: 40px; }
+            .article-container h1 { font-size: 2.5rem; }
+            .article-body h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
+        <ul class="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+            <li><a href="services.html">คอร์สปิดพุง (Services)</a></li>
+            <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li> <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <ul class="mobile-nav-links" id="mobile-menu">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+        <li><a href="services.html">คอร์สปิดพุง (Services)</a></li>
+        <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li> <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
+
+    <header class="article-header" style="background-image: url('https://plus.unsplash.com/premium_photo-1661389027878-5a024f9f17d7?q=80&w=1470&auto=format&fit=crop');">
+    </header>
+
+    <main class="article-container">
+        
+        <span class="category-tag">ภารกิจ: ปิดพุงเกษียณ</span>
+        <h1>อธิบาย "กฎ 4%" (ฉบับฟาร์มไก่ไข่ 🐔)</h1>
+        <div class="author-info">
+            โดย: ผู้ช่วยโก๊ะ (นักบำบัดกระเป๋า) | 8 พฤศจิกายน 2568
+        </div>
+
+        <div class="article-body">
+            
+            <p>
+                "ผู้ช่วยโก๊ะ" (ผม) ขอ "วินิจฉัย" (Diagnose) "ความกลัว" (Fear) ที่ "ใหญ่" (Biggest) ที่สุด...
+                ของ "คนไข้" (Patient) ที่กำลังจะ "เกษียณ" (Retire) นะครับ...
+            </p>
+            <p>
+                มันคือคำถามที่ว่า:
+                <br>
+                <strong>"ฉันมีเงินก้อน (เช่น 10 ล้าน)... แล้วฉันจะ 'ใช้' (Spend) มันยังไง... ให้ 'พอ' (Enough) ... ไปจนถึง 'วันตาย' (Death) ... โดยที่ 'เงินไม่หมด' (Money doesn't run out) 'ก่อน' (Before) ล่ะ?"</strong>
+            </p>
+            <p>
+                มัน "น่ากลัว" (Scary) ใช่ไหมครับ?
+                <br>
+                ... "มนต์สะกด" (The Spell) ของ "โก๊ะ" (Goh) วันนี้... คือการ "บำบัด" (Heal) "ความกลัว" (Fear) นี้... ด้วย "นิทาน" (Fable) ที่ "ง่าย" (Simple) ที่สุดครับ
+            </p>
+            
+            <h2>ยินดีต้อนรับสู่ "ฟาร์มไก่ไข่เกษียณ" 🐔🥚</h2>
+            <p>
+                "ผู้ช่วยโก๊ะ" (ผม) ขอ "สะกดจิต" (Hypnotize) คุณ "ใหม่" (New) นะครับ...
+                <br>
+                "เงินก้อนเกษียณ" (Retirement Nest Egg) ... มัน "ไม่ใช่" (IS NOT) "กองเงิน" (A pile of money) ... ที่ "ลดลง" (Decreases) "ทุกครั้ง" (Every time) ที่คุณ "หยิบ" (Take) มันไปใช้...
+                <br><br>
+                ...แต่มัน "คือ" (IS) **"ฟาร์มไก่ไข่" (A Chicken Farm)** ครับ!
+            </p>
+
+            <h3>"ฟาร์ม" (The Farm) ของคุณ... ทำงานยังไง:</h3>
+            <ul>
+                <li><strong>"เงินต้น" (Your 10 Million):</strong> ➡️ คือ **"แม่ไก่" (The Hens) 🐔** (สมมติคุณมี 10,000 ตัว)</li>
+                <li><strong>"ผลตอบแทน" (Investment Return) (เช่น 5%):</strong> ➡️ คือ **"ไข่" (The Eggs) 🥚** (ที่ "แม่ไก่" (Hens) "ออก" (Lay) ให้คุณ "ทุกปี" (Every year))</li>
+                <li><strong>"เงินเฟ้อ" (Inflation) (เช่น 3%):</strong> ➡️ คือ **"ค่าอาหารไก่" (The Chicken Feed) 🌽** (ที่ "แพงขึ้น" (Gets expensive) "ทุกปี" (Every year))</li>
+            </ul>
+
+            <h3>"ภารกิจ" (The Mission) ของ "คนเกษียณ" (Retiree)</h3>
+            <p>
+                "ภารกิจ" (Mission) ของเรา... คือ "การ 'กินไข่' (Eat eggs) ... โดย 'ไม่ฆ่าแม่ไก่' (Without killing the hens) ... ครับ!"
+            </p>
+            <p>
+                ...เพราะ "ทันที" (The moment) ที่คุณ "เริ่ม" (Start) "ฆ่าแม่ไก่" (Eating the hens) (เงินต้น) ...
+                ... "ฟาร์ม" (Farm) ของคุณ... ก็ "เริ่มนับถอยหลัง" (Countdown) ... สู่ "วันล่มสลาย" (Bankruptcy) ... (เพราะ "แม่ไก่" (Hens) ที่ "ออกไข่" (Lay eggs) ... มัน "น้อยลง" (Are fewer) ครับ!)
+            </p>
+
+            <h2>"กฎ 4%" (The 4% Rule) ... หรือ "สูตรกินไข่" (The Egg-Eating Formula)</h2>
+            <p>
+                "นักวิจัย" (Researchers) (ที่ไม่ใช่ "โก๊ะ" 😅) ... เขา "ค้นพบ" (Discovered) "สูตร" (Formula) "บำบัดใจ" (Therapeutic) นี้ครับ:
+            </p>
+            <p>
+                (เขา "สมมติ" (Assume) ว่า "ฟาร์ม" (Farm) ของคุณ (พอร์ตผสม)... "ออกไข่" (Returns) ได้ **7%** ...
+                ...และ "ค่าอาหาร" (Inflation) "แพงขึ้น" (Costs) **3%**...)
+            </p>
+            <p>
+                ...ดังนั้น... คุณ "เหลือ" (Are left with) "ไข่" (Eggs) ... ที่ "กิน" (Eat) ได้ "ฟรีๆ" (Safely) ... โดย "แม่ไก่" (Hens) "ไม่ลด" (Don't decrease) ...
+                <br>...อยู่ที่: (7% - 3%) = **"4%"** ครับ!
+            </p>
+            <p>
+                **"กฎ 4%"** จึง "บอก" (Tells) เราว่า:
+                <br>
+                <strong>"ในปีแรกที่คุณเกษียณ... คุณสามารถ 'กินไข่' (ถอนเงิน) ออกมาใช้ได้ 4% ... ของ 'แม่ไก่' (เงินก้อน) ทั้งหมดที่คุณมี"</strong>
+            </p>
+            
+            <h3>ตัวอย่าง (Example):</h3>
+            <ul>
+                <li>คุณ "เกษียณ" (Retire) ... ด้วย "แม่ไก่" (Hens) ➡️ **10,000,000 บาท**</li>
+                <li>คุณ "กิน" (Eat) "ไข่" (Eggs) (ปีแรก) ➡️ **400,000 บาท** (4% ของ 10 ล้าน)</li>
+                <li>"แม่ไก่" (Hens) ที่เหลือ (9.6 ล้าน) ... ก็ "ออกไข่" (Lays eggs) "สู้" (Against) "ค่าอาหาร" (Inflation) "ต่อไป" (Continuing)... (ทำให้ "ปีหน้า" (Next year) คุณก็ "ยัง" (Still) "มีไข่" (Have eggs) "400,000 (บวกเงินเฟ้อ)" ... "กิน" (To eat) "ต่อไป" (Again) ครับ!)</li>
+            </ul>
+
+            <h2>"มนต์สะกด" (The Spell) ... คือ "การคิดกลับด้าน" (The Reverse)</h2>
+            <p>
+                "คน" (People) ส่วนใหญ่... "ถูกสะกด" (Are hypnotized) "ผิด" (Wrongly) ครับ...
+                ...เขา "คิด" (Think) ว่า: "ฉันต้อง 'มี 10 ล้าน' (Have 10M) ... 'ก่อน' (Before) ... 'ค่อยคิด' (Then think) ว่า 'จะใช้ยังไง' (How to spend)"
+            </p>
+            <p>
+                "ผู้ช่วยโก๊ะ" (Goh) ... "บำบัด" (Heals) คุณ "ใหม่" (New) ครับ...
+                <br>
+                **...เรา "ต้อง" (MUST) "คิด" (Think) ว่า: "เรา 'อยากใช้' (Want to spend) 'เท่าไหร่'?" ... "ก่อน" (FIRST) ...**
+                <br>
+                **...แล้ว "กฎ 4%" (4% Rule) ... มันจะ "บอก" (Tell) "ขนาดฟาร์ม" (The Farm Size) ... ที่เรา "ต้องสร้าง" (Must build) ... "เอง" (Automatically) ครับ!**
+            </p>
+            <p>
+                "สูตร" (Formula) (ที่ "คลินิกพุงเกษียณ" (Retirement Clinic) ของเราใช้) ... "ง่าย" (Simple) มากครับ:
+                <br>
+                <strong>`"ขนาดฟาร์ม" (Farm Size) = (ค่าใช้จ่าย 'ต่อปี') / 0.04`</strong>
+            </p>
+            <p>
+                (เช่น: "อยากใช้" (Want to spend) เดือนละ 30,000 (ปีละ 360,000)?)
+                <br>
+                `360,000 / 0.04 = 9,000,000 บาท`
+                <br>
+                ...นี่ไงครับ! "ขนาดฟาร์ม" (Farm Size) (พุงเกษียณ) ... ที่ "ลูกพี่" (คุณ) "ต้องสร้าง" (Must build) ... (ก่อนคิดเงินเฟ้อ) ... คือ **"9 ล้านบาท"** ครับ!
+            </p>
+
+            <div class="urgent-cta">
+                <h2>ถึงตาคุณ "วินิจฉัย" แล้ว!</h2>
+                <p>
+                    "มนต์สะกด" (The Spell) ถูก "เฉลย" (Revealed) แล้วครับ!
+                    <br>...คุณ "รู้" (Know) "วิธี" (How) "คำนวณ" (Calculate) "เป้าหมาย" (The Goal) ของคุณแล้ว...
+                </p>
+                <p>
+                    อย่า "แค่" (Don't just) "อ่าน" (Read)... **"ลงมือทำ" (Act) ครับ!**
+                    <br>"ฟาร์ม" (Farm) ของคุณ... "ยังไม่เริ่มสร้าง" (Hasn't started building) เลยนะครับ!
+                </p>
+                
+                <a href="retirement-calculator.html" class="cta-button-green">
+                    🐷 ไปที่ 'คลินิก'... "วินิจฉัยฟาร์ม" (ฟรี!) เดี๋ยวนี้!
+                </a>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2568 | <a href="index.html">บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a></p>
+            <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
