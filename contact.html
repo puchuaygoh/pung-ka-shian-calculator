@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จองคิวบำบัด - สปากระเป๋า by ผู้ช่วยโก๊ะ</title>
+    <title>จองคิวบำบัด - บำนาญ สร้างง่ายนิดเดียว</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
@@ -37,8 +37,8 @@
         }
         .nav-logo {
             font-weight: 700;
-            font-size: 1.5rem;
-            color: #00B894;
+            font-size: 1.3rem;
+            color: #34495e; 
             text-decoration: none;
         }
         .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
@@ -54,10 +54,8 @@
         .mobile-nav-links.active { display: block; }
         .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
         .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
-
-        /* --- (นี่คือ CSS ใหม่ สำหรับหน้า Contact) --- */
         .contact-hero {
-            background-color: #34495e; /* สีเทาเข้ม (สีเดียวกับ Footer) */
+            background-color: #34495e;
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -72,18 +70,15 @@
             color: #eee;
             margin-top: 10px;
         }
-        
         .contact-content {
             background-color: #ffffff;
             padding: 40px 0;
             text-align: center;
         }
-        
-        /* (CSS ใหม่) --- "ห้องจองคิว (LINE OA)" --- */
         .cta-box {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #E8F8F5; /* สีเขียว Mint สปา */
+            background-color: #E8F8F5;
             border: 2px dashed #00B894;
             border-radius: 12px;
             padding: 30px;
@@ -100,12 +95,12 @@
         .cta-box .qr-code {
             width: 200px;
             height: 200px;
-            background-color: #ccc; /* (Placeholder - ใส่ QR Code จริง) */
+            background-color: #ccc;
             margin: 20px auto;
             border: 5px solid white;
         }
         .cta-button-line {
-            background-color: #00B900; /* สีเขียว LINE */
+            background-color: #00B900;
             color: white;
             padding: 15px 30px;
             font-size: 1.1rem;
@@ -124,8 +119,6 @@
             font-weight: 700;
             color: #d9534f;
         }
-
-        /* (CSS ใหม่) --- "ช่องทางอื่น" --- */
         .other-channels {
             padding: 40px 0;
             text-align: center;
@@ -142,8 +135,6 @@
             color: #00B894;
             font-weight: 700;
         }
-
-
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -153,13 +144,11 @@
         }
         .footer p { margin: 5px 0; }
         .footer a { color: #00B894; text-decoration: none; }
-
-        /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
             .nav-links { display: flex; }
+            .nav-logo { font-size: 1.5rem; }
             .hamburger-menu { display: none; }
             .mobile-nav-links { display: none !important; }
-
             .contact-hero h1 { font-size: 2.5rem; }
             .contact-hero p { font-size: 1.1rem; }
             .cta-box h2 { font-size: 1.8rem; }
@@ -169,32 +158,27 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">🤸‍♂️ สปากระเป๋า by ผู้ช่วยโก๊ะ</a>
-        
+        <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
         <ul class="nav-links">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li>
-</ul>
-
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+            <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+            <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+            <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li> </ul>
         <div class="hamburger-menu" id="hamburger-btn">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
-    
     <ul class="mobile-nav-links" id="mobile-menu">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li>
-</ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+        <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+        <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+        <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html" style="color: #00B894;">จองคิว (ติดต่อเรา)</a></li> </ul>
 
     <section class="contact-hero">
         <div class="container">
@@ -234,19 +218,17 @@
                 <br>
                 หรือติดตาม "ภารกิจ" ของเราได้ที่
                 <br>
-                **Facebook:** <a href="https://www.facebook.com/your-page-link" target="_blank">"บำนาญ สร้างง่าย... by ผู้ช่วยโก๊ะ"</a>
+                **Facebook:** <a href="https://www.facebook.com/your-page-link" target="_blank">"บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ"</a>
             </p>
         </div>
     </section>
 
-
     <footer class="footer">
         <div class="container">
-            <p>© 2568 | <a href="index.html">สปากระเป๋า by ผู้ช่วยโก๊ะ</a></p>
-            <p>บำบัดใจ... ให้กระเป๋า Fit & Firm</p>
+            <p>© 2568 | <a href="index.html">บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a></p>
+            <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
         </div>
     </footer>
-
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -257,6 +239,5 @@
             mobileMenu.classList.toggle('active');
         });
     </script>
-
 </body>
 </html>
