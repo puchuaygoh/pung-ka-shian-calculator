@@ -8,26 +8,60 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* (โค้ด CSS ของ Tax "เหมือนเดิม" ครับ... ไม่ต้องแก้) */
+        /* ========== 1. CSS (ฉบับ "ปลูกถ่ายเมนู") ========== */
+        
         body {
             font-family: 'Kanit', sans-serif;
             background-color: #f5f6fa;
             color: #34495e;
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            line-height: 1.6;
         }
         .container {
             width: 100%;
             max-width: 600px;
+            margin: 20px auto;
             background-color: #ffffff;
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             border: 1px solid #e0e0e0;
         }
+
+        /* --- (โค้ด "เมนู" (Navbar) ที่ "ปลูกถ่าย" เข้ามา) --- */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #34495e; 
+            text-decoration: none;
+        }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: none; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { text-decoration: none; color: #34495e; font-weight: 700; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #00B894; }
+        .hamburger-menu { display: block; cursor: pointer; }
+        .hamburger-menu span { display: block; width: 25px; height: 3px; margin: 5px; background-color: #34495e; transition: all 0.3s ease; }
+        .hamburger-menu.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+        .hamburger-menu.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        .mobile-nav-links { display: none; list-style: none; padding: 0; margin: 0; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; width: 100%; text-align: center; }
+        .mobile-nav-links.active { display: block; }
+        .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
+        .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
+        /* --- (จบโค้ด "เมนู") --- */
+
         .header {
             background-color: #d9534f;
             color: white;
@@ -176,9 +210,45 @@
             font-size: 0.8rem;
             color: #888;
         }
+        
+        /* --- (Responsive - สำหรับจอใหญ่) --- */
+        @media (min-width: 769px) {
+            .nav-links { display: flex; }
+            .hamburger-menu { display: none; }
+            .mobile-nav-links { display: none !important; }
+        }
     </style>
 </head>
 <body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+            <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+            <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+            <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
+
+        <div class="hamburger-menu" id="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    
+    <ul class="mobile-nav-links" id="mobile-menu">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+        <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+        <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+        <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
+
     <div class="container">
         <header class="header">
             <img src="mascot.png" alt="Mascot ผู้ช่วยโก๊ะ" class="mascot-header">
@@ -223,17 +293,23 @@
                 <br>สำหรับปีภาษี 2568 (ยื่นต้นปี 2569) ครับ</p>
         </footer>
     </div>
+
     <script>
-        // (โค้ด JavaScript ของ Tax "เหมือนเดิม" ครับ... ไม่ต้องแก้)
+        // --- (โค้ดสำหรับ "เมนูแฮมเบอร์เกอร์" (☰)) ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerBtn.addEventListener('click', function() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // --- (โค้ดสำหรับ "คลินิกภาษี 2 ข้อ" (เดิม)) ---
         const form = document.getElementById('tax-form');
         const resultsArea = document.getElementById('results-area');
         const nextSteps = document.getElementById('next-steps');
         const sizeDisplay = document.getElementById('belly-size-display');
         const mascotMessage = document.getElementById('mascot-message');
         const taxAmount = document.getElementById('tax-amount');
-        
-        // (เราลบปุ่ม ctaButton ที่ซ้ำซ้อนออกไป... เพราะเราย้ายลิงก์ไปใส่ใน HTML โดยตรงแล้ว)
-
         const formatter = new Intl.NumberFormat('th-TH', {
             style: 'decimal',
             maximumFractionDigits: 0,
@@ -296,5 +372,6 @@
             resultsArea.scrollIntoView({ behavior: 'smooth' });
         });
     </script>
+
 </body>
 </html>
