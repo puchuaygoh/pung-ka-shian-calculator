@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แผนบำบัด (บริการ) - บำนาญ สร้างง่ายนิดเดียว</title>
+    <title>คอร์สปิดพุง (Services) - บำนาญ สร้างง่ายนิดเดียว</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
@@ -54,8 +54,10 @@
         .mobile-nav-links.active { display: block; }
         .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
         .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
+
+        /* --- (CSS "services.html" ใหม่!) --- */
         .services-hero {
-            background-color: #E8F8F5;
+            background-color: #E8F8F5; /* สีเขียว Mint สปา */
             color: #34495e;
             padding: 60px 20px;
             text-align: center;
@@ -70,13 +72,16 @@
             color: #555;
             margin-top: 10px;
         }
+        
         .services-content {
             background-color: #ffffff;
             padding: 40px 0;
         }
+        
+        /* ("เมนูคอร์ส") */
         .service-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
             gap: 30px;
         }
         .service-card {
@@ -105,12 +110,12 @@
             margin-top: 0;
         }
         .service-card-body p {
-            font-size: 1rem;
+            font-size: 1rem; /* 📌 (เพิ่มขนาด) */
             color: #555;
             margin-bottom: 20px;
         }
         .cta-button-service {
-            background-color: #FFC0CB;
+            background-color: #FFC0CB; /* สีชมพู */
             color: #34495e;
             padding: 12px 20px;
             font-size: 1rem;
@@ -124,10 +129,14 @@
         .cta-button-service:hover {
             background-color: #ffafc0;
         }
-        .service-card.foundation .service-card-header { background-color: #555; }
-        .service-card.calm .service-card-header { background-color: #2980b9; }
-        .service-card.comfy .service-card-header { background-color: #00B894; }
-        .service-card.fighter .service-card-header { background-color: #d9534f; }
+        
+        /* (ปรับสี Header Card ตาม "ธีม 'บำนาญ+พุง'") */
+        .service-card.foundation .service-card-header { background-color: #555; } /* สีเทา (พื้นฐาน) */
+        .service-card.calm .service-card-header { background-color: #2980b9; } /* สีน้ำเงิน (ใจสงบ) */
+        .service-card.comfy .service-card-header { background-color: #00B894; } /* สีเขียว (ใจสบาย) */
+        .service-card.fighter .service-card-header { background-color: #d9534f; } /* สีแดง (ใจสู้) */
+
+
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -137,15 +146,19 @@
         }
         .footer p { margin: 5px 0; }
         .footer a { color: #00B894; text-decoration: none; }
+
+        /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
             .nav-links { display: flex; }
             .nav-logo { font-size: 1.5rem; }
             .hamburger-menu { display: none; }
             .mobile-nav-links { display: none !important; }
+
             .services-hero h1 { font-size: 2.5rem; }
             .services-hero p { font-size: 1.1rem; }
+
             .service-grid { 
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr 1fr; /* 📌 (2 คอลัมน์ บนจอใหญ่) */
             }
         }
     </style>
@@ -154,42 +167,48 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
+        
         <ul class="nav-links">
             <li><a href="index.html">หน้าแรก</a></li>
             <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-            <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li> <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+            <li><a href="services.html" style="color: #00B894;">คอร์สปิดพุง (Services)</a></li> 
+            <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
             <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
             <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
         </ul>
+
         <div class="hamburger-menu" id="hamburger-btn">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
+    
     <ul class="mobile-nav-links" id="mobile-menu">
         <li><a href="index.html">หน้าแรก</a></li>
         <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-        <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li> <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+        <li><a href="services.html" style="color: #00B894;">คอร์สปิดพุง (Services)</a></li> 
+        <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
         <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
         <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
     </ul>
 
     <section class="services-hero">
         <div class="container">
-            <h1>"แผนบำบัด" (Services) ของเรา</h1>
+            <h1>"คอร์สปิดพุง" (Services) ของเรา</h1>
             <p>"บำนาญ" จะ "สร้างง่าย"... ถ้า "กระเป๋า" ของคุณ "สะอาด" (ไม่รั่ว) ก่อนครับ<br>
-            นี่คือ "คอร์ส" ที่ 'ผู้ช่วยโก๊ะ' ใช้ "อุดรูรั่ว" (Patch Leaks) ให้คุณครับ</p>
+            นี่คือ "คอร์ส" ที่ 'ผู้ช่วยโก๊ะ' ใช้ "อุดรูรั่ว" (Patch Leaks) ให้คุณครับ (นี่คือ Step 2!) </p>
         </div>
     </section>
 
     <section class="services-content">
         <div class="container">
+            
             <div class="service-grid">
 
                 <div class="service-card foundation">
                     <div class="service-card-header">
-                        <h2>🛡️ แผน #1: "เกราะป้องกันพุง" (พื้นฐาน)</h2>
+                        <h2>🛡️ คอร์ส #1: "เกราะป้องกันพุง" (พื้นฐาน)</h2>
                     </div>
                     <div class="service-card-body">
                         <h3>(บำบัดปัญหา: "กลัวป่วย", "กลัวจากไป")</h3>
@@ -198,13 +217,13 @@
                             เพื่อ "ป้องกัน" ไม่ให้ "พุงค่าหมอ" หรือ "เหตุไม่คาดฝัน" ...
                             มา "ทำลาย" "พุงเกษียณ" ที่เรากำลังจะสร้างครับ
                         </p>
-                        <a href="contact.html" class="cta-button-service">ปรึกษา "แผนใส่เกราะ"</a>
+                        <a href="contact.html" class="cta-button-service">ปรึกษา "คอร์สใส่เกราะ"</a>
                     </div>
                 </div>
 
                 <div class="service-card calm">
                     <div class="service-card-header">
-                        <h2>🧘‍♂️ แผน #2: สาย "ใจสงบ" (ประกันบำนาญ)</h2>
+                        <h2>🧘‍♂️ คอร์ส #2: สาย "ใจสงบ" (ประกันบำนาญ)</h2>
                     </div>
                     <div class="service-card-body">
                         <h3>(บำบัดปัญหา: "กลัวอายุยืนแล้วเงินหมด")</h3>
@@ -212,27 +231,27 @@
                             สำหรับคนที่ไม่ชอบความเสี่ยง ขอความ "ชัวร์" 100% (Set it and Forget it)
                             "อุดรูรั่ว" (ความกลัว) นี้... ด้วยการ "ย้าย" ภาษี/เงินออม มาเป็น **"เงินเดือนตลอดชีวิต" (Annuity)** ที่ "การันตี" ครับ
                         </p>
-                        <a href="contact.html" class="cta-button-service">ปรึกษา "แผนใจสงบ"</a>
+                        <a href="contact.html" class="cta-button-service">ปรึกษา "คอร์สใจสงบ"</a>
                     </div>
                 </div>
 
                 <div class="service-card comfy">
                     <div class="service-card-header">
-                        <h2>😊 แผน #3: สาย "ใจสบาย" (Universal Life)</h2>
+                        <h2>😊 คอร์ส #3: สาย "ใจสบาย" (Universal Life)</h2>
                     </div>
                     <div class="service-card-body">
                         <h3>(บำบัดปัญหา: "กลัวเสี่ยง แต่อยากยืดหยุ่น")</h3>
                         <p>
-                            สำหรับคนที่ "ใจสงบ" (เหมือนแผน #2) แต่ "ไม่ชอบ" การผูกมัดระยะยาว
+                            สำหรับคนที่ "ใจสงบ" (เหมือนคอร์ส #2) แต่ "ไม่ชอบ" การผูกมัดระยะยาว
                             แผนนี้ (Universal Life) จะ "อุดรูรั่ว" โดยให้ "ผลตอบแทนปลอดภัย" ที่ "ยืดหยุ่น" (หยุดพัก/ถอน) ได้ครับ
                         </p>
-                        <a href="contact.html" class="cta-button-service">ปรึกษา "แผนใจสบาย"</a>
+                        <a href="contact.html" class="cta-button-service">ปรึกษา "คอร์สใจสบาย"</a>
                     </div>
                 </div>
 
                 <div class="service-card fighter">
                     <div class="service-card-header">
-                        <h2>💪 แผน #4: สาย "ใจสู้" (Unit-Linked)</h2>
+                        <h2>💪 คอร์ส #4: สาย "ใจสู้" (Unit-Linked)</h2>
                     </div>
                     <div class="service-card-body">
                         <h3>(บำบัดปัญหา: "อยากลงทุน แต่ขาดวินัย/เกราะ")</h3>
@@ -240,12 +259,11 @@
                             สำหรับคนที่ "ใจสู้" อยากให้เงิน "โต" (Growth) แต่ "กลัว" ลงทุนเอง
                             แผนนี้ (Unit-Linked) คือ "ยิมส่วนตัว" ที่ "อุดรูรั่ว" (ความกลัว) ... โดย "บังคับ" คุณสร้างกล้ามเนื้อ (ลงทุน) พร้อม "เกราะ" (คุ้มครอง) ในตัวครับ
                         </p>
-                        <a href="contact.html" class="cta-button-service">ปรึกษา "แผนใจสู้"</a>
+                        <a href="contact.html" class="cta-button-service">ปรึกษา "คอร์สใจสู้"</a>
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div> </div>
     </section>
 
     <footer class="footer">
@@ -254,6 +272,7 @@
             <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
         </div>
     </footer>
+
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -264,5 +283,6 @@
             mobileMenu.classList.toggle('active');
         });
     </script>
+
 </body>
 </html>
