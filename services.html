@@ -54,10 +54,8 @@
         .mobile-nav-links.active { display: block; }
         .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
         .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
-
-        /* --- (CSS "services.html" ใหม่!) --- */
         .services-hero {
-            background-color: #E8F8F5; /* สีเขียว Mint สปา */
+            background-color: #E8F8F5;
             color: #34495e;
             padding: 60px 20px;
             text-align: center;
@@ -72,16 +70,13 @@
             color: #555;
             margin-top: 10px;
         }
-        
         .services-content {
             background-color: #ffffff;
             padding: 40px 0;
         }
-        
-        /* ("เมนูคอร์ส") */
         .service-grid {
             display: grid;
-            grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
+            grid-template-columns: 1fr;
             gap: 30px;
         }
         .service-card {
@@ -110,12 +105,12 @@
             margin-top: 0;
         }
         .service-card-body p {
-            font-size: 1rem; /* 📌 (เพิ่มขนาด) */
+            font-size: 1rem;
             color: #555;
             margin-bottom: 20px;
         }
         .cta-button-service {
-            background-color: #FFC0CB; /* สีชมพู */
+            background-color: #FFC0CB;
             color: #34495e;
             padding: 12px 20px;
             font-size: 1rem;
@@ -129,14 +124,10 @@
         .cta-button-service:hover {
             background-color: #ffafc0;
         }
-        
-        /* (ปรับสี Header Card ตาม "ธีม 'บำนาญ+พุง'") */
-        .service-card.foundation .service-card-header { background-color: #555; } /* สีเทา (พื้นฐาน) */
-        .service-card.calm .service-card-header { background-color: #2980b9; } /* สีน้ำเงิน (ใจสงบ) */
-        .service-card.comfy .service-card-header { background-color: #00B894; } /* สีเขียว (ใจสบาย) */
-        .service-card.fighter .service-card-header { background-color: #d9534f; } /* สีแดง (ใจสู้) */
-
-
+        .service-card.foundation .service-card-header { background-color: #555; }
+        .service-card.calm .service-card-header { background-color: #2980b9; }
+        .service-card.comfy .service-card-header { background-color: #00B894; }
+        .service-card.fighter .service-card-header { background-color: #d9534f; }
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -146,18 +137,15 @@
         }
         .footer p { margin: 5px 0; }
         .footer a { color: #00B894; text-decoration: none; }
-
-        /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
             .nav-links { display: flex; }
+            .nav-logo { font-size: 1.5rem; }
             .hamburger-menu { display: none; }
             .mobile-nav-links { display: none !important; }
-
             .services-hero h1 { font-size: 2.5rem; }
             .services-hero p { font-size: 1.1rem; }
-
             .service-grid { 
-                grid-template-columns: 1fr 1fr; /* 📌 (2 คอลัมน์ บนจอใหญ่) */
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -166,31 +154,26 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
-        
         <ul class="nav-links">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
-
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+            <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li> <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+            <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
         <div class="hamburger-menu" id="hamburger-btn">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
-    
     <ul class="mobile-nav-links" id="mobile-menu">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+        <li><a href="services.html" style="color: #00B894;">แผนบำบัด (บริการ)</a></li> <li><a href="articles.html">ภารกิจ (บทความ)</a></li>
+        <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
 
     <section class="services-hero">
         <div class="container">
@@ -202,7 +185,6 @@
 
     <section class="services-content">
         <div class="container">
-            
             <div class="service-grid">
 
                 <div class="service-card foundation">
@@ -262,7 +244,8 @@
                     </div>
                 </div>
 
-            </div> </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -271,7 +254,6 @@
             <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
         </div>
     </footer>
-
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -282,6 +264,5 @@
             mobileMenu.classList.toggle('active');
         });
     </script>
-
 </body>
 </html>
