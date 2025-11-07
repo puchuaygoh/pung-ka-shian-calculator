@@ -54,10 +54,8 @@
         .mobile-nav-links.active { display: block; }
         .mobile-nav-links li { padding: 15px 0; border-top: 1px solid #f0f0f0; }
         .mobile-nav-links a { text-decoration: none; color: #34495e; font-weight: 700; font-size: 1.1rem; }
-
-        /* --- (นี่คือ CSS ใหม่ สำหรับหน้า Articles) --- */
         .articles-hero {
-            background-color: #fcf8e3; /* สีเหลืองอ่อน (สีความรู้) */
+            background-color: #fcf8e3;
             color: #8a6d3b;
             padding: 60px 20px;
             text-align: center;
@@ -68,13 +66,10 @@
             margin: 0;
             line-height: 1.4;
         }
-        
         .articles-content {
             background-color: #ffffff;
             padding: 40px 0;
         }
-        
-        /* (CSS ใหม่) --- "หมวดหมู่" --- */
         .categories {
             text-align: center;
             margin-bottom: 40px;
@@ -92,14 +87,12 @@
             transition: background-color 0.3s ease;
         }
         .categories a:hover, .categories a.active {
-            background-color: #00B894; /* สีเขียวแบรนด์ */
+            background-color: #00B894;
             color: white;
         }
-
-        /* (CSS ใหม่) --- "การ์ดบทความ" --- */
         .article-grid {
             display: grid;
-            grid-template-columns: 1fr; /* (Mobile-First) 1 คอลัมน์ */
+            grid-template-columns: 1fr;
             gap: 30px;
         }
         .article-card {
@@ -117,7 +110,7 @@
         .article-card-image {
             width: 100%;
             height: 180px;
-            background-color: #ccc; /* (Placeholder - ใส่รูป Thumbnail บทความ) */
+            background-color: #ccc;
             background-size: cover;
             background-position: center;
         }
@@ -133,20 +126,19 @@
         .article-card-body h2 {
             font-size: 1.3rem;
             margin: 10px 0;
-            line-height: 1.4; /* 📌 (เพิ่ม) */
+            line-height: 1.4;
         }
         .article-card-body p {
-            font-size: 0.9rem; /* 📌 (เพิ่ม) */
+            font-size: 0.9rem;
             color: #555;
             margin-bottom: 20px;
-            line-height: 1.7; /* 📌 (เพิ่ม) */
+            line-height: 1.7;
         }
         .article-card-body a {
             text-decoration: none;
-            color: #d9534f; /* 📌 (สีแดง) */
+            color: #d9534f;
             font-weight: 700;
         }
-
         .footer {
             background-color: #34495e;
             color: #bdc3c7;
@@ -156,16 +148,12 @@
         }
         .footer p { margin: 5px 0; }
         .footer a { color: #00B894; text-decoration: none; }
-
-        /* --- (Responsive - สำหรับจอใหญ่) --- */
         @media (min-width: 769px) {
             .nav-links { display: flex; }
+            .nav-logo { font-size: 1.5rem; }
             .hamburger-menu { display: none; }
             .mobile-nav-links { display: none !important; }
-
             .articles-hero h1 { font-size: 2.5rem; }
-            
-            /* (สำคัญ!) เปลี่ยนเป็น 2 คอลัมน์ บนจอใหญ่ */
             .article-grid { 
                 grid-template-columns: 1fr 1fr;
             }
@@ -176,31 +164,26 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">🐷 บำนาญ สร้างง่ายนิดเดียว by ผู้ช่วยโก๊ะ</a>
-        
         <ul class="nav-links">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
-
+            <li><a href="index.html">หน้าแรก</a></li>
+            <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+            <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+            <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li> <li><a href="index.html#clinics" style="background-color: #f0ad4e; color: white; padding: 5px 10px; border-radius: 5px;">ห้องวินิจฉัย (Tools)</a></li>
+            <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+        </ul>
         <div class="hamburger-menu" id="hamburger-btn">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
-    
     <ul class="mobile-nav-links" id="mobile-menu">
-    <li><a href="index.html">หน้าแรก</a></li>
-    <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
-    <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
-    <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li>
-    <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
-    <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
-</ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="about.html">เกี่ยวกับ 'โก๊ะ'</a></li>
+        <li><a href="services.html">แผนบำบัด (บริการ)</a></li>
+        <li><a href="articles.html" style="color: #00B894;">ภารกิจ (บทความ)</a></li> <li><a href="index.html#clinics" style="color: #00B894;">ห้องวินิจฉัย (Tools)</a></li>
+        <li><a href="contact.html">จองคิว (ติดต่อเรา)</a></li>
+    </ul>
 
     <section class="articles-hero">
         <div class="container">
@@ -220,33 +203,30 @@
             </div>
 
             <div class="article-grid">
-
                 <div class="article-card">
                     <div class="article-card-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1679079456083-9f288e224e96?q=80&w=1470&auto=format&fit=crop');"></div>
                     <div class="article-card-body">
                         <span class="category-tag">ภารกิจ: ปิดพุงเกษียณ</span>
                         <h2>(ตัวอย่าง) ภารกิจ #1: "พุงเกษียณ" คืออะไร? (วินิจฉัย 'ไขมันการเงิน')</h2>
                         <p>
-                            "พุง" ไม่ได้เกิดจาก "การเงิน" ... แต่เกิดจาก "หัวใจ"...
+                            "พุง" ไม่ได้เกิดจาก "การเงิน" ... แต่เกิดจาก "หัวใจ"... 
                             มาวินิจฉัย "ไขมันเลว" (หนี้/เงินเฟ้อ) และ "กล้ามเนื้อ" (ประกัน/กองทุน) ของคุณกัน...
                         </p>
                         <a href="#">อ่านภารกิจนี้ต่อ ></a>
                     </div>
                 </div>
-
                 <div class="article-card">
                     <div class="article-card-image" style="background-image: url('https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1470&auto=format&fit=crop');"></div>
                     <div class="article-card-body">
                         <span class="category-tag">ภารกิจ: ลดพุงภาษี</span>
                         <h2>(ตัวอย่าง) 7 สูตรลับสลาย "พุงภาษี" (ฉบับ Q4)</h2>
                         <p>
-                            "พุงภาษี" รอไม่ได้! มาดู 7 "เครื่องมือเบิร์น" (RMF, Thai ESG, ประกันบำนาญ)
+                            "พุงภาษี" รอไม่ได้! มาดู 7 "เครื่องมือเบิร์น" (RMF, Thai ESG, ประกันบำนาญ) 
                             ที่จะ "ย้าย" ภาษีของคุณ... มาเป็น "สินทรัพย์" ก่อน 31 ธ.ค. นี้!...
                         </p>
                         <a href="#">อ่านภารกิจนี้ต่อ ></a>
                     </div>
                 </div>
-                
                 <div class="article-card">
                     <div class="article-card-image" style="background-image: url('https://images.unsplash.com/photo-1549421222-2631587498EA?q=80&w=1470&auto=format&fit=crop');"></div>
                     <div class="article-card-body">
@@ -259,7 +239,6 @@
                         <a href="#">อ่านภารกิจนี้ต่อ ></a>
                     </div>
                 </div>
-
                 <div class="article-card">
                     <div class="article-card-image" style="background-image: url('https://plus.unsplash.com/premium_photo-1661389027878-5a024f9f17d7?q=80&w=1470&auto=format&fit=crop');"></div>
                     <div class="article-card-body">
@@ -272,8 +251,8 @@
                         <a href="#">อ่านภารกิจนี้ต่อ ></a>
                     </div>
                 </div>
-
-            </div> </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -282,7 +261,6 @@
             <p>ภารกิจ: บำบัดพุงเกษียณ | ลดพุงภาษี</p>
         </div>
     </footer>
-
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -293,6 +271,5 @@
             mobileMenu.classList.toggle('active');
         });
     </script>
-
 </body>
 </html>
