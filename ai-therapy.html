@@ -252,6 +252,7 @@
         } else {
             
             const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+            // 📌📌 (นี่คือ "ยา" ที่แก้ "บรรทัด 263" (Line 263) ครับ!) 📌📌
             const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // (ใช้ "pro" ที่ "เสถียร" (Stable) ที่สุดครับ!)
 
             const userPromptTextarea = document.getElementById('userPrompt');
