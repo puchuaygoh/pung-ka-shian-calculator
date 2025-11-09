@@ -233,6 +233,7 @@
     <script type="module">
         
         // 📌 (STEP 1: "เรียก" (Import) "สมอง AI" (AI Brain) "ก่อน" (FIRST)!)
+        // (เราจะใช้ "jsdelivr.net" ที่ "เสถียร" (Stable) ที่สุดครับ)
         import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai@latest/dist/index.js";
 
         // ---------------------------------------------------------------------------
@@ -240,26 +241,19 @@
         const GEMINI_API_KEY = "AIzaSyCmw6n3esCycDGeW0rGBuka3RPIdehMIxw"; 
         // ---------------------------------------------------------------------------
 
-        // 📌 (STEP 3: "เช็ก" (Check) "กุญแจ" (Key) และ "สมอง" (Brain))
+        // 📌 (STEP 3: "เช็ก" (Check) "กุญแจ" (Key) "ก่อน" (FIRST) ... (นี่คือ "ยา" (Medicine) ที่ "แก้บั๊ก" (Fix) "ปุ่มค้าง" (Stuck button) ครับ!))
         if (GEMINI_API_KEY === "ใส่_Gemini_API_Key_ของคุณ_ที่นี่" || !GEMINI_API_KEY) {
             document.getElementById('errorMessage').textContent = "⚠️ Config Error: กรุณาใส่ Gemini API Key ของคุณในโค้ด JavaScript ก่อนใช้งาน";
             document.getElementById('errorMessage').style.display = 'block';
             document.getElementById('getTherapyCardButton').disabled = true;
             document.getElementById('initialMessage').style.display = 'none';
         
-        // 📌 (STEP 4: "ถ้า" (IF) "สมอง" (Brain) "โหลด" (Loaded) "ไม่สำเร็จ" (Failed))
-        } else if (typeof GoogleGenerativeAI === 'undefined') {
-            document.getElementById('errorMessage').textContent = "⚠️ Library Error: ไม่สามารถโหลด Google Gemini SDK ได้ (โปรดเช็ก Console หรือลองรีเฟรช)";
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('getTherapyCardButton').disabled = true;
-            document.getElementById('initialMessage').style.display = 'none';
-        
-        // 📌 (STEP 5: "ถ้า" (IF) "ทุกอย่าง" (Everything) "พร้อม" (Ready)... "เริ่มทำงาน" (Start working!))
+        // 📌 (STEP 4: "ถ้า" (IF) "กุญแจ" (Key) "ถูก" (Correct)... "ค่อย" (Then) "เริ่ม" (Start) "ทำงาน" (Working))
         } else {
             
             const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-            // 📌📌 (นี่คือ "ยา" ที่แก้ "บรรทัด 263" (Line 263) ครับ!) 📌📌
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // (ใช้ "pro" ที่ "เสถียร" (Stable) ที่สุดครับ!)
+
             const userPromptTextarea = document.getElementById('userPrompt');
             const getTherapyCardButton = document.getElementById('getTherapyCardButton');
             const loadingSpinner = document.querySelector('.loading-spinner');
