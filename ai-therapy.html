@@ -233,7 +233,7 @@
     <script type="module">
         
         // 📌 (STEP 1: "เรียก" (Import) "สมอง AI" (AI Brain) "ก่อน" (FIRST)!)
-        import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+        import { GoogleGenerativeAI } from "https://cdn.jsdelivr.net/npm/@google/generative-ai@latest/dist/index.js";
 
         // ---------------------------------------------------------------------------
         // *** 📌📌 (STEP 2: "ใส่" (Insert) "กุญแจ" (Key) "ที่นี่" (HERE)) 📌📌 ***
@@ -259,8 +259,7 @@
             
             const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
             // 📌📌 (นี่คือ "ยา" ที่แก้ "บรรทัด 263" (Line 263) ครับ!) 📌📌
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // (ใช้ "pro" ที่ "เสถียร" (Stable) ที่สุดครับ!)
-
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
             const userPromptTextarea = document.getElementById('userPrompt');
             const getTherapyCardButton = document.getElementById('getTherapyCardButton');
             const loadingSpinner = document.querySelector('.loading-spinner');
