@@ -194,7 +194,80 @@
 
     <section class="articles-content">
         <div class="container">
+         <style>
+                .triage-box {
+                    background-color: #E8F8F5; /* สีเขียว Mint อ่อน */
+                    border: 2px dashed #00B894;
+                    border-radius: 12px;
+                    padding: 30px;
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
+                .triage-box h2 {
+                    font-size: 1.6rem;
+                    color: #34495e;
+                    margin-top: 0;
+                }
+                .triage-buttons {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    margin-top: 20px;
+                }
+                .triage-button {
+                    display: block;
+                    padding: 15px 20px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    border-radius: 8px;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                }
+                .triage-button:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                }
+                .triage-button.calm { background-color: #a9dceb; color: #2980b9; } /* 🧘‍♂️ สีใจสงบ */
+                .triage-button.action { background-color: #fde3e2; color: #d9534f; } /* 💪 สีใจสู้ */
+                .triage-button.confused { background-color: #fef9e7; color: #f0ad4e; } /* 😟 สีสับสน */
+
+                @media (min-width: 769px) {
+                    .triage-buttons {
+                        flex-direction: row; /* (เปลี่ยนเป็น "แนวนอน" (Horizontal) "บนจอใหญ่" (Desktop)) */
+                        justify-content: center;
+                    }
+                    .triage-button {
+                        flex: 1;
+                        max-width: 250px;
+                    }
+                }
+            </style>
             
+            <div class="triage-box">
+                <h2>คุณ "คาใจ" (กังวล) เรื่องอะไรที่สุดในตอนนี้ครับ?</h2>
+                <p>"คลินิก" (Clinic) ของเรา "มี 'ไพ่บำบัด' (Therapy Card)" (ที่เรา "สร้างรอ" (Pre-made)) "ไว้" (for you) "3 แบบ" (3 types) "ครับ"</p>
+                <div class="triage-buttons">
+                    <a href="card-calm.html" class="triage-button calm">
+                        🧘‍♂️ ฉันกังวลเรื่อง "ความมั่นคง" (อนาคต/บำนาญ)
+                    </a>
+                    <a href="card-action.html" class="triage-button action">
+                        💪 ฉันกังวลเรื่อง "การเติบโต" (อยากเริ่มลงทุน)
+                    </a>
+                    <a href="card-confused.html" class="triage-button confused">
+                        😟 ฉันกังวลเรื่อง "ความสับสน" (หนี้สิน/ไม่แน่ใจ)
+                    </a>
+                </div>
+            </div>
+            ```
+
+---
+
+4.  **"Commit changes"** (บันทึก)
+5.  **"ล้างแคช" (Hard Refresh)** (`Ctrl+Shift+R` หรือ `Cmd+Shift+R`) ที่หน้า `articles.html` ของคุณ
+
+... "คลินิกบำบัดกึ่งอัตโนมัติ" (Hybrid Clinic) ของเรา... ก็ "พร้อม" (Ready) "เปิดให้บริการ" (To open for service) "แล้ว" (already) ครับ!
+
+(เมื่อ "คนไข้" (Patient) "คลิก" (Clicks) "ปุ่ม 3 ปุ่ม" (3 buttons) "นี้" (this) ... มัน "ควรจะ" (Should) "ลิงก์" (Link) "ไปที่" (to) "หน้าไพ่" (Card pages) "3 หน้า" (3) "ที่เรา" (we) "เพิ่ง" (just) "สร้าง" (created) "เสร็จ" (finished) "ครับ!")   
             <div class="categories">
                 <a href="#" class="active">ทั้งหมด (All)</a>
                 <a href="#">ภารกิจ: ปิดพุงเกษียณ</a>
