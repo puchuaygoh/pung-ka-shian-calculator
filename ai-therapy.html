@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คลินิก AI บำบัดส่วนบุคคล - บำนาญ สร้างง่าย</title>
+    <link rel="stylesheet" href="style.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* สไตล์เพิ่มเติมสำหรับหน้า AI Therapy โดยเฉพาะ */
+        body {
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            background-color: #f0f4f7;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e0e6ed;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 2.5em;
+        }
+        .intro-text {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .therapy-input-section {
+            background-color: #ecf0f1;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #dce2e8;
+        }
+        textarea {
+            width: calc(100% - 20px);
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #aebfd0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            line-height: 1.5;
+            min-height: 150px;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        .therapy-result-section {
+            margin-top: 35px;
+            padding: 25px;
+            background-color: #fdfdfd;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            min-height: 250px; /* เพิ่มความสูงขั้นต่ำ */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #555;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative; /* สำหรับตำแหน่ง overlay */
+        }
+        .therapy-card-display {
+            position: relative;
+            width: 100%; /* หรือกำหนดขนาดคงที่ */
+            max-width: 400px; /* กำหนดขนาดสูงสุดของไพ่ */
+            margin: 20px auto;
+        }
+        .therapy-card-display img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .therapy-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; /* ความกว้างของข้อความบนไพ่ */
+            padding: 15px;
+            color: #333; /* สีข้อความบนไพ่ */
+            font-size: 1.1em;
+            font-weight: 500;
+            line-height: 1.4;
+            text-align: center;
+            /* background-color: rgba(255, 255, 255, 0.85); */ /* พื้นหลังข้อความ ถ้าจำเป็น */
+            border-radius: 8px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-message {
+            color: #e74c3c;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        .footer-cta {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px dashed #ccc;
+        }
+        .footer-cta p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .footer-cta a.button {
+            display: inline-block;
+            background-color: #2ecc71;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .footer-cta a.button:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>คลินิก AI บำบัดส่วนบุคคล</h1>
+        <p class="intro-text">
+            ที่นี่คือพื้นที่ปลอดภัยของคุณ AI จะรับฟังทุกความกังวลและเลือกไพ่บำบัดพร้อมข้อความพิเศษให้คุณโดยเฉพาะ
+        </p>
+
+        <div class="therapy-input-section">
+            <p style="font-size: 1.2em; color: #34495e; font-weight: 500; margin-bottom: 25px;">
+                ระบายความรู้สึก หรือพิมพ์ความกังวลใจของคุณลงไปได้เลย
+            </p>
+            <textarea id="userPrompt" placeholder="วันนี้คุณรู้สึกอย่างไร? มีเรื่องอะไรที่ทำให้ไม่สบายใจบ้าง? คุณกังวลเรื่องอะไรเป็นพิเศษ?"></textarea>
+            <button id="getTherapyCardButton">รับไพ่บำบัด</button>
+        </div>
+
+        <div class="therapy-result-section" id="resultArea">
+            <p id="initialMessage">ไพ่บำบัดและคำแนะนำของคุณจะปรากฏที่นี่</p>
+            <div class="loading-spinner" style="display: none;"></div>
+            <div class="therapy-card-display" style="display: none;">
+                <img id="therapyCardImage" src="" alt="ไพ่บำบัดของคุณ">
+                <div id="therapyTextOverlay" class="therapy-text-overlay"></div>
+            </div>
+            <p id="errorMessage" class="error-message" style="display: none;"></p>
+        </div>
+
+        <div class="footer-cta">
+            <p>สนใจปรึกษาปัญหาการเงินกับผู้เชี่ยวชาญตัวจริง?</p>
+            <a href="about.html" class="button">คุยกับนักบำบัด (ผู้ช่วยโก๊ะ)</a>
+        </div>
+    </div>
+
+    <script type="module">
+        // *** สำคัญมาก! เปลี่ยนค่านี้เป็น Gemini API Key ของคุณ ***
+        const GEMINI_API_KEY = 0819275125; 
+
+        // ตรวจสอบว่ามี API Key แล้วหรือยังก่อนที่จะโหลดโมดูล AI
+        if (GEMINI_API_KEY === "ใส่_Gemini_API_Key_ของคุณ_ที่นี่" || !GEMINI_API_KEY) {
+            document.getElementById('errorMessage').textContent = "⚠️ กรุณาใส่ Gemini API Key ของคุณในโค้ด JavaScript ก่อนใช้งาน";
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('getTherapyCardButton').disabled = true;
+            document.getElementById('initialMessage').style.display = 'none';
+        } else {
+            // โหลดและใช้งาน Gemini API เมื่อมี API Key แล้ว
+            import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+            const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // ใช้ gemini-pro สำหรับข้อความ
+
+            const userPromptTextarea = document.getElementById('userPrompt');
+            const getTherapyCardButton = document.getElementById('getTherapyCardButton');
+            const resultArea = document.getElementById('resultArea');
+            const loadingSpinner = document.querySelector('.loading-spinner');
+            const therapyCardDisplay = document.querySelector('.therapy-card-display');
+            const therapyCardImage = document.getElementById('therapyCardImage');
+            const therapyTextOverlay = document.getElementById('therapyTextOverlay');
+            const errorMessage = document.getElementById('errorMessage');
+            const initialMessage = document.getElementById('initialMessage');
+
+            // เตรียมข้อมูลสำหรับไพ่บำบัดที่เรามี (รูปภาพเหล่านี้จะต้องอยู่ในโฟลเดอร์ images/ ของเรา)
+            const therapyCards = {
+                "ใจสงบ": {
+                    image: "images/chef-guarantee-card-(ใจสงบ).png", // ไพ่เชฟการันตีสำหรับคนชอบความมั่นคง ปลอดภัย
+                    name: "ไพ่เชฟการันตี: มั่นคง ปลอดภัย"
+                },
+                "อยากเปลี่ยนแปลง": {
+                    image: "images/gym-3in1-card-(อยากเปลี่ยนแปลง).png", // ไพ่ยิม 3-in-1 สำหรับคนอยากเริ่มลงทุน หรือต้องการปรับแผน
+                    name: "ไพ่ยิม 3-in-1: เริ่มต้นสร้างพลัง"
+                },
+                "ไม่แน่ใจ/ลังเล": {
+                    image: "images/mirror-childhood-card-(สะท้อนตัวตนวัยเด็ก).png", // ไพ่กระจกวัยเด็กสำหรับคนที่ไม่แน่ใจ ต้องการสำรวจตัวเอง
+                    name: "ไพ่กระจกวัยเด็ก: สะท้อนตัวตน"
+                }
+                // สามารถเพิ่มประเภทไพ่และรูปภาพได้อีกในอนาคต
+            };
+
+            getTherapyCardButton.addEventListener('click', async () => {
+                const userPrompt = userPromptTextarea.value.trim();
+                if (!userPrompt) {
+                    alert('กรุณาพิมพ์ความกังวลของคุณก่อนนะครับ!');
+                    return;
+                }
+
+                // ซ่อนข้อความเริ่มต้นและแสดงสถานะกำลังโหลด
+                initialMessage.style.display = 'none';
+                therapyCardDisplay.style.display = 'none';
+                errorMessage.style.display = 'none';
+                loadingSpinner.style.display = 'block';
+                getTherapyCardButton.disabled = true;
+
+                try {
+                    // Prompt สำหรับให้ AI วิเคราะห์ประเภทความกังวลและสร้างข้อความบำบัด
+                    const aiPrompt = `
+                    ผู้ใช้งานมีความกังวลดังนี้: "${userPrompt}"
+
+                    ช่วยวิเคราะห์ว่าผู้ใช้งานมีแนวโน้มความกังวลประเภทใดจาก 3 ประเภทนี้ (เลือกมา 1 ประเภทเท่านั้น):
+                    1. ใจสงบ: ต้องการความมั่นคง ปลอดภัย ไม่ชอบความเสี่ยง
+                    2. อยากเปลี่ยนแปลง: อยากเริ่มลงทุน อยากปรับแผนการเงิน ต้องการแนวทางใหม่ๆ
+                    3. ไม่แน่ใจ/ลังเล: ยังไม่รู้ว่าตัวเองต้องการอะไรกันแน่ ต้องการสำรวจตัวเอง
+
+                    จากนั้น ให้สร้างข้อความบำบัดที่ปรับแต่งเฉพาะบุคคลสั้นๆ (ไม่เกิน 3-4 บรรทัด หรือประมาณ 50-70 คำ) โดยอ้างอิงจากความกังวลของผู้ใช้ (โดยไม่ต้องใช้ชื่อผู้ใช้) และเชื่อมโยงไปถึงไพ่บำบัด/เครื่องมือที่เหมาะสมจากคลินิกของเรา (เช่น "เชฟการันตี", "ยิม 3-in-1", "กระจกวัยเด็ก")
+                    
+                    รูปแบบผลลัพธ์ที่ต้องการคือ JSON เท่านั้น โดยมี 2 field คือ:
+                    {
+                      "concern_type": "ประเภทความกังวลที่เลือก (เช่น ใจสงบ, อยากเปลี่ยนแปลง, ไม่แน่ใจ/ลังเล)",
+                      "therapy_message": "ข้อความบำบัดที่ AI สร้างขึ้น"
+                    }
+                    `;
+
+                    const result = await model.generateContent(aiPrompt);
+                    const response = await result.response;
+                    const text = response.text();
+                    
+                    // พยายามแปลงผลลัพธ์จาก AI ให้เป็น JSON
+                    const aiResponse = JSON.parse(text);
+                    const concernType = aiResponse.concern_type;
+                    const therapyMessage = aiResponse.therapy_message;
+
+                    // เลือกไพ่บำบัดตามประเภทที่ AI วิเคราะห์ได้
+                    let selectedCard = therapyCards["ไม่แน่ใจ/ลังเล"]; // ตั้งค่าเริ่มต้น
+                    if (therapyCards[concernType]) {
+                        selectedCard = therapyCards[concernType];
+                    }
+
+                    // แสดงผลลัพธ์บนหน้าจอ
+                    therapyCardImage.src = selectedCard.image;
+                    therapyTextOverlay.textContent = therapyMessage;
+                    
+                    therapyCardDisplay.style.display = 'block';
+                    loadingSpinner.style.display = 'none';
+                    errorMessage.style.display = 'none';
+                    
+                } catch (error) {
+                    console.error("Error getting therapy card:", error);
+                    errorMessage.textContent = `เกิดข้อผิดพลาด: ไม่สามารถรับไพ่บำบัดได้ (${error.message || 'โปรดลองอีกครั้ง'})`;
+                    errorMessage.style.display = 'block';
+                    loadingSpinner.style.display = 'none';
+                    therapyCardDisplay.style.display = 'none'; // ซ่อนไพ่ถ้ามีข้อผิดพลาด
+                } finally {
+                    getTherapyCardButton.disabled = false; // เปิดปุ่มอีกครั้ง
+                }
+            });
+        }
+    </script>
+</body>
+</html>
