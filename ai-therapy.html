@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>คลินิก AI บำบัดส่วนบุคคล - บำนาญ สร้างง่าย</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* (CSS ทั้งหมด... "เหมือนเดิม" (Same as before) ครับ... 
-           ผม "คัดลอก" (Copied) "ดีไซน์" (Design) "ที่ 'ไม่พัง'" (Not broken) "มาให้" (for you) "แล้ว" (already)) */
+        /* (CSS ทั้งหมด "เหมือนเดิม" ครับ) */
         body {
             font-family: 'Kanit', sans-serif;
             background-color: #f0f4f7;
@@ -257,10 +257,9 @@
         // 📌 (STEP 5: "ถ้า" (IF) "ทุกอย่าง" (Everything) "พร้อม" (Ready)... "เริ่มทำงาน" (Start working!))
         } else {
             
-            // (โค้ดที่เหลือ "เหมือนเดิม" (Same as before) ครับ)
-            
             const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            // 📌📌 (นี่คือ "ยา" ที่แก้ "บรรทัด 263" (Line 263) ครับ!) 📌📌
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // (ใช้ "pro" ที่ "เสถียร" (Stable) ที่สุดครับ!)
 
             const userPromptTextarea = document.getElementById('userPrompt');
             const getTherapyCardButton = document.getElementById('getTherapyCardButton');
@@ -312,14 +311,15 @@
                             role: "system",
                             parts: [{ text: SYSTEM_INSTRUCTION }],
                         },
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                        }
                     });
 
                     const result = await chat.sendMessage(aiPrompt);
                     const response = result.response;
                     
-                    // (แก้บั๊ก "JSON")
                     let text = response.text();
-                    // (กัน AI "เผลอ" (Accidentally) "ใส่" (Add) "```json" (```json) "ครอบ" (Wrap) "มาให้" (the response))
                     text = text.replace(/```json/g, "").replace(/```/g, "").trim(); 
                     
                     const aiResponse = JSON.parse(text); 
